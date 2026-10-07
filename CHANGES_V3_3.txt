@@ -1,0 +1,17 @@
+NUNES IndiaMART Automation V3.3 - Google Sheet Dropdown Fix
+
+Fixed from the reported Corona Generators issue:
+- Product dropdown no longer depends only on exact header names.
+- Automatically detects headers such as ITEM DESCRIPTION, Material Name, Product/Service and other legacy names.
+- Detects the real header row even when title rows appear above it.
+- Falls back to content-based product-column detection when a legacy header is unfamiliar.
+- Preserves exact Google Sheet row numbers after header-row detection.
+- Search now runs against the ENTIRE sheet on the server, not only the first loaded dropdown page.
+- Added 280 ms debounce so typing stays responsive.
+- Added a 45-second parsed-sheet cache to make repeated searches fast.
+- If there is one search match, the dropdown selects it automatically.
+- Exact product-name matches are automatically selected.
+- Pressing Enter in Search Product searches and loads the selected match.
+- UI now displays which product column was detected.
+
+This specifically fixes cases where Corona Generators exists far down a large spreadsheet or where the sheet uses a non-standard product header.

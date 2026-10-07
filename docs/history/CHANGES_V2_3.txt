@@ -1,0 +1,26 @@
+NUNES IndiaMART Automation V2.3.0
+=================================
+
+FIXED: Google Sheet setup / APPS_SCRIPT_URL error
+
+Problem seen in V2.2:
+- The safe release correctly did not include the user's real .env secrets.
+- Clicking "Load Next from Google Sheet" while the Sheet bridge was not configured
+  showed a technical red error: "APPS_SCRIPT_URL is missing in .env".
+- This looked like the whole system was broken even though manual input was working.
+
+V2.3 changes:
+1. Google Sheet is explicitly optional and never blocks manual product entry.
+2. Missing Sheet configuration no longer throws the technical .env message in the UI.
+3. "Load Next from Google Sheet" opens a friendly one-time setup window when needed.
+4. Setup accepts the deployed Apps Script /exec URL and token inside the app.
+5. The app tests the connection BEFORE saving it.
+6. Successful settings are stored locally in .env and used immediately; restart is not required.
+7. Invalid URL/token/deployment errors are shown inside the setup window, not as a scary global error.
+8. The Sheet button shows Setup / Connected / Row N so the current state is obvious.
+9. Existing V2.2 image/PDF anti-blink fixes and IndiaMART Chrome session reuse are preserved.
+10. PUBLISH_MODE remains review by default.
+
+Security:
+- Real APPS_SCRIPT_URL and APPS_SCRIPT_TOKEN are NOT included in this ZIP.
+- The in-app setup stores them only in the local project .env.

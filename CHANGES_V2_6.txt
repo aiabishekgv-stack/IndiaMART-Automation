@@ -1,0 +1,14 @@
+NUNES IndiaMART Automation V2.6 - Smart Image Variations
+
+Main upgrade:
+- Scan every available real product image from local/account sources and public research URLs.
+- Deduplicate similar references automatically.
+- Rank the strongest product images.
+- Generate five intentionally different catalogue images:
+  1. Front hero
+  2. 3/4 left angle
+  3. 3/4 right angle
+  4. Elevated perspective
+  5. Alternate composition
+- Save reference_manifest.json and variant_plan.json for traceability.
+- Keeps the IndiaMART login popup as the first screen.

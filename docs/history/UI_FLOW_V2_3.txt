@@ -1,0 +1,45 @@
+NUNES V2.3 FRIENDLY FLOW
+========================
+
+START
+  |
+  v
+Reuse existing IndiaMART Chrome account
+  |
+  v
+Next -> Product Page
+  |
+  +--> Manual entry (always available)
+  |
+  +--> Load Next from Google Sheet
+         |
+         +-- configured --> load next row
+         |
+         +-- not configured --> friendly one-time Sheet setup popup
+                                -> test URL/token
+                                -> save locally
+                                -> load next row
+  |
+  v
+Public Research & Prepare
+  |
+  v
+Next -> Template
+  |
+  v
+Review / Edit
+  |
+  v
+Approve & Build PDF
+  |
+  v
+Continue to IndiaMART Seller
+  |
+  v
+Existing product? -> Variant / New Product
+  |
+  v
+Fill safe selling data + specs + 5 images + PDF
+  |
+  v
+Manual review by default

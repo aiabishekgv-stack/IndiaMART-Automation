@@ -1,0 +1,24 @@
+NUNES IndiaMART Automation V2.2 - Friendly Stable Flow
+
+START
+  -> Existing IndiaMART Account popup
+      -> Check saved automation session
+      -> If needed, snapshot existing normal Chrome profile session
+      -> No separate sign-in page opened
+      -> Connected
+  -> Next -> Product Page
+      -> Load Next from Google Sheet OR manual product/model/image
+      -> Public Research & Prepare
+  -> Next -> Template Review
+      -> Company / location
+      -> Description / features / applications / specifications
+      -> Five product images (stable; no poll blinking)
+      -> Edit Preview
+      -> Approve & Build PDF
+      -> PDF preview (stable; no poll blinking)
+  -> Continue to IndiaMART Seller
+      -> Verify authenticated session headlessly first
+      -> Open seller Manage Products only after verification
+      -> Match existing product / Add Variant or Add Product
+      -> Fill approved fields + selling price + 5 images + PDF
+      -> Review-first final step

@@ -1,0 +1,54 @@
+NUNES IndiaMART Automation V3.2 Production
+
+Production improvements added after V3.1:
+
+1. Retry Failed Step
+   - Public research failure retries only Public Research.
+   - PDF failure retries only PDF build.
+   - IndiaMART failure retries only Seller phase.
+
+2. Product History
+   - Recent Products button in the header.
+   - Reopen previous prepared products without starting over.
+
+3. Duplicate Guard
+   - Existing reliable IndiaMART matches force Add Variant instead of Add New Product.
+   - Match/decision data is saved in product_record.json.
+
+4. Selector Diagnostics
+   - IndiaMART seller failures save ERROR.png, indiamart_error.txt and selector_debug.txt.
+   - Diagnostics can be viewed from the failed-step tools.
+
+5. Image Order / Primary Image
+   - Choose any of the 5 images as the primary image.
+   - Move images left/right to reorder the upload sequence.
+   - Image 1 is the primary PDF/listing image.
+   - Reordering invalidates the old PDF so it is rebuilt safely.
+
+6. Completion Screen
+   - Shows product, model, image count, PDF state, IndiaMART decision/status, Sheet row and seller result.
+   - Review-first mode includes an explicit 'I Submitted / Completed Review' confirmation.
+
+7. Automatic Checkpoints / Recovery
+   - Product record checkpoints are saved before/after important steps.
+   - Restore Last Checkpoint is available after a failure.
+
+8. Google Sheet Status Handling
+   - Direct shared-link mode keeps reliable local completion tracking.
+   - review_required is NOT incorrectly marked completed.
+   - Manual completion marks the row completed locally.
+   - If the optional Apps Script bridge is configured, status/decision/URL/timestamp can be written back to Google Sheet.
+
+9. V3.1 bug fix
+   - Sheet tab name is now preserved correctly when preparing a selected product.
+
+Existing features preserved:
+- Login-first IndiaMART flow
+- Existing Chrome session reuse
+- Google Sheet tab/product dropdowns
+- Background public research
+- Qwen evidence-based content
+- Multi-reference 5-image Image Studio
+- PDF matched to the supplied NUNES reference brochure
+- Selling-price safety
+- Review-first publishing

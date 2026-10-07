@@ -1,0 +1,19 @@
+GOOGLE SHEET SETUP — V2.4
+========================
+
+Google Sheet is optional.
+
+ONE-TIME SETUP
+1. Google Sheet → Extensions → Apps Script.
+2. Paste apps_script\Code.gs.
+3. Change TOKEN to a long random value.
+4. Deploy → New deployment → Web app.
+5. Copy the URL ending in /exec.
+6. On the SERVER PC open http://127.0.0.1:5077.
+7. Click Load Next from Google Sheet.
+8. Paste the /exec URL + token, then Save & Connect.
+
+V2.4 stores them privately here:
+%LOCALAPPDATA%\NUNES_INDIAMART_AUTOMATION\config\.env
+
+LAN client PCs cannot change the credentials. They can load rows once the server PC is configured.

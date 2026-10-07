@@ -1,0 +1,16 @@
+NUNES IndiaMART Automation V3.3 - Validation Report
+
+PASS Python compilation
+PASS Existing offline smoke tests
+PASS Product record
+PASS Selling-price safety
+PASS Model synchronization
+PASS Five-image pipeline
+PASS PDF pipeline
+PASS Non-standard Sheet product header detection
+PASS Header row detection below title rows
+PASS Full-sheet search beyond first 1,200 rows
+PASS Exact Google Sheet source-row loading
+PASS Frontend JavaScript syntax
+
+Live Google Sheet network access still requires the user's Windows PC because the build environment has no external network access.

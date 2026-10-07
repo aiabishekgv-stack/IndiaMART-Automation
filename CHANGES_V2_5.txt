@@ -1,0 +1,11 @@
+NUNES IndiaMART Automation V2.5
+================================
+
+1. First screen is now a dedicated IndiaMART Account popup.
+2. Automatic saved-session / existing-Chrome connection remains the recommended path.
+3. Added manual fallback button: Open IndiaMART Login.
+4. Manual login opens the official IndiaMART page in the controlled Chrome browser.
+5. NUNES never asks for or stores the IndiaMART OTP.
+6. Popup polls login status automatically and enables Next only after a verified seller login.
+7. Preserves V2.4 local-private Google Sheet config and LAN-safe admin configuration.
+8. Preserves anti-blink images/PDF, model consistency, safe selling-price rules, upload verification and review-first publishing.

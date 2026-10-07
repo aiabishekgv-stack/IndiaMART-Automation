@@ -1,0 +1,25 @@
+NUNES IndiaMART Automation V2.9 - Reference PDF Match
+
+Reference used:
+Manual Heat Press Machine SF00005470.pdf
+
+Brochure layout changes:
+- Two-page brochure kept.
+- Page 1 follows the reference: NUNES branded header, single-line product/model title, large framed product image, PRODUCT SPECIFICATION heading, 7 specification rows.
+- Page 2 follows the reference: PRODUCT DESCRIPTION heading, approximately 100-115 words, Key Features section, up to 16 one-line feature bullets, NUNES office footer.
+- Applications remain in IndiaMART listing data but are not printed in the PDF because the reference brochure does not show an Applications section.
+
+Reference typography measurements used:
+- Page 1 product title: 23.46 pt target.
+- Product Specification heading: 13.54 pt.
+- Specification row text: 10.50 pt.
+- Product Description heading: 15.53 pt.
+- Key Features heading: 12.44 pt.
+- Page 2 body/features: 9.39 pt.
+- Body line spacing: approximately 19.805 pt.
+
+Content-generation changes:
+- Qwen is asked for approximately 100-120 words for description.
+- Qwen can return up to 16 evidence-backed key features.
+- The brochure safely trims long descriptions to the reference length.
+- If fewer features exist, evidence-backed specifications may be used as additional bullets; no unsupported claim is invented.

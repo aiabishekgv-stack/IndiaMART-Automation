@@ -1,0 +1,18 @@
+NUNES IndiaMART Automation V3.0 - Auto Google Sheet Link
+
+Google Sheet supplied by user:
+https://docs.google.com/spreadsheets/d/1iGpbKroGTez2HNq0ps7shzn0OMvASn9-67UBPdogiJw/edit?usp=sharing
+
+Changes:
+- Direct Google Sheet loading is preconfigured.
+- No Apps Script URL/token is required to LOAD products.
+- Old/stale Apps Script credentials are ignored because direct mode is the default.
+- After IndiaMART login, the next Google Sheet row loads automatically.
+- Load Next from Google Sheet remains available manually.
+- The system reads Product Name, Model, Selling Price, and the full row.
+- If an IndiaMART Status column exists, DONE/processed rows are skipped.
+- In direct mode, completion is tracked locally under LocalAppData so the next row can be loaded.
+- Optional Apps Script mode remains available only if remote Sheet write-back is required.
+
+Requirement:
+The Google Sheet must be shared as: Anyone with the link -> Viewer for direct background loading.

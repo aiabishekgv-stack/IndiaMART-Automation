@@ -1,0 +1,23 @@
+REFERENCE BROCHURE PROFILE
+
+Source: assets/reference_brochure.pdf
+
+Page 1
+- A4: 595.5 x 842.25 pt
+- Title target: 23.46 pt
+- Product image: centered in blue frame
+- PRODUCT SPECIFICATION: 13.54 pt
+- 7 specification rows
+- Specification text: 10.50 pt
+
+Page 2
+- PRODUCT DESCRIPTION: 15.53 pt
+- Description body: 9.39 pt
+- Reference description: about 115 words
+- Reference body leading: about 19.805 pt
+- Key Features: 12.44 pt
+- Feature body: 9.39 pt
+- Up to 16 feature bullets
+- Existing NUNES footer retained
+
+The runtime PDF builder does not copy the reference product content. It uses these measured layout/typography rules with each new product's approved evidence.

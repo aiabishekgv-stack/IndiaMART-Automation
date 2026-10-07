@@ -1,0 +1,16 @@
+GOOGLE SHEET AUTO CONNECTION
+============================
+
+This V3.0 build is already connected to:
+https://docs.google.com/spreadsheets/d/1iGpbKroGTez2HNq0ps7shzn0OMvASn9-67UBPdogiJw/edit?usp=sharing
+
+You do NOT need to paste an Apps Script URL or token to load products.
+
+One Google setting is required:
+Share -> General access -> Anyone with the link -> Viewer
+
+Default source tab: final sheet
+If that tab does not exist, the program automatically tries the first sheet tab.
+
+Direct mode is read-only remotely. Product completion is remembered locally on the server PC.
+If you later want IndiaMART Status/URL written back into Google Sheets, the optional Apps Script bridge can still be enabled.

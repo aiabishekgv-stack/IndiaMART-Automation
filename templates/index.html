@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NUNES Product Research & IndiaMART V4.1</title>
+<style>
+:root{
+  --navy:#071b43;--navy2:#0d2b67;--blue:#2d63e2;--blue2:#6d8df2;
+  --pink:#eb1d8d;--green:#149866;--green-bg:#e9f8f1;--purple:#8b5de7;
+  --bg:#f4f7fb;--panel:#fff;--text:#142039;--muted:#6b7890;--line:#dbe4f0;
+  --soft:#f7f9fd;--danger:#c23b53;--amber:#a96b00;--shadow:0 14px 38px rgba(27,50,95,.10);
+  --radius:18px;
+}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed;transform:none!important}
+.app{min-height:100vh}.topbar{height:78px;background:linear-gradient(115deg,#06193e,#0b2a66);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 28px;box-shadow:0 8px 24px rgba(6,25,62,.18);position:sticky;top:0;z-index:30}
+.brand{display:flex;align-items:center;gap:14px}.logo{width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,#397cff,#ae55df);display:grid;place-items:center;font-weight:900;font-size:22px;box-shadow:0 8px 20px rgba(69,97,220,.35)}
+.brand-title{font-weight:850;font-size:20px}.brand-sub{font-size:12px;opacity:.78;margin-top:3px}.top-right{display:flex;align-items:center;gap:12px}.connection-pill{display:flex;align-items:center;gap:7px;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.11);font-size:12px;font-weight:800;border:1px solid rgba(255,255,255,.13)}.connection-dot{width:9px;height:9px;border-radius:50%;background:#f1ad36}.connection-pill.connected .connection-dot{background:#31d192}.connection-pill.connected{background:rgba(49,209,146,.14)}
+.top-next{border:0;border-radius:12px;padding:11px 17px;font-weight:850;color:#fff;background:linear-gradient(135deg,#3773ed,#ec278f);box-shadow:0 8px 20px rgba(53,93,210,.2)}
+.flowbar{max-width:1480px;margin:0 auto;padding:18px 24px 0}.flow{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 22px rgba(26,47,93,.06);display:grid;grid-template-columns:repeat(3,1fr);overflow:hidden}.flow-step{padding:12px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid var(--line);font-weight:800;color:#6c7890}.flow-step:last-child{border:0}.flow-num{width:28px;height:28px;border-radius:50%;background:#edf2fb;color:#5870a3;display:grid;place-items:center}.flow-step.active{color:var(--blue);background:#f6f9ff}.flow-step.active .flow-num{background:var(--blue);color:#fff}.flow-step.done{color:var(--green)}.flow-step.done .flow-num{background:var(--green);color:#fff}
+.workspace{max-width:1480px;margin:0 auto;padding:18px 24px 30px}.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:430px 1fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:11px}.panel-icon{width:36px;height:36px;border-radius:12px;background:#eaf1ff;color:var(--blue);display:grid;place-items:center;font-size:18px;font-weight:900}.panel-head h2{font-size:17px;margin:0}.panel-head p{margin:3px 0 0;font-size:12px;color:var(--muted)}.panel-body{padding:20px}
+.sheet-btn{width:100%;border:1px solid #cfdaf0;background:#f7faff;color:#2251bd;border-radius:13px;padding:14px;font-weight:850;display:flex;align-items:center;justify-content:center;gap:9px}.sheet-btn:hover{background:#eef4ff}.manual-tag{font-size:11px;border-radius:999px;background:#eaf1ff;color:#3159b4;padding:4px 8px;margin-left:4px}
+.sheet-browser{border:1px solid #cfdbef;background:linear-gradient(145deg,#f8fbff,#f3f7ff);border-radius:15px;padding:14px;margin-bottom:17px}.sheet-browser-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:11px}.sheet-browser-head strong{font-size:13px;color:#173a81}.sheet-browser-grid{display:grid;grid-template-columns:1fr 140px;gap:8px}.sheet-browser .select,.sheet-browser .search{width:100%;border:1px solid #cbd8eb;border-radius:10px;background:#fff;padding:10px 11px;color:#1c2c4e;outline:none}.sheet-browser .select:focus,.sheet-browser .search:focus{border-color:#6a8de9;box-shadow:0 0 0 3px rgba(45,99,226,.08)}.sheet-product-row{display:grid;grid-template-columns:1fr;gap:8px;margin-top:8px}.sheet-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}.sheet-action{border:1px solid #c9d7ec;border-radius:10px;padding:10px 11px;font-weight:850;background:#fff;color:#2b56ad}.sheet-action.primary-sheet{background:#2f66df;color:#fff;border-color:#2f66df}.sheet-summary{font-size:10px;color:#70809a;margin-top:8px;line-height:1.4}.sheet-label{font-size:10px;font-weight:850;color:#5a6b89;margin:7px 0 4px;display:block}.sheet-placeholder{color:#8c99ad}.sheet-btn.compact{padding:10px 11px;font-size:12px;margin-top:8px}@media(max-width:520px){.sheet-browser-grid,.sheet-actions{grid-template-columns:1fr}}
+.step-list{position:relative;margin-top:18px}.input-step{position:relative;padding:0 0 20px 44px}.input-step:before{content:"";position:absolute;left:14px;top:30px;bottom:0;width:2px;background:#e1e8f3}.input-step:last-child:before{display:none}.step-circle{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:900}.step-title{font-weight:850;color:#2458c6;margin-bottom:8px}.label{display:block;font-size:12px;font-weight:800;color:#31405f;margin-bottom:6px}.hint{font-weight:600;color:#8995a8}.input,.textarea{width:100%;border:1px solid #ccd7e8;border-radius:11px;background:#fbfcfe;padding:12px 13px;outline:none;color:var(--text)}.input:focus,.textarea:focus{border-color:#6a8de9;box-shadow:0 0 0 3px rgba(45,99,226,.09)}.upload{border:1px dashed #aebdd5;background:#fbfdff;border-radius:11px;padding:11px}.upload input{width:100%}.primary{width:100%;border:0;border-radius:12px;background:linear-gradient(135deg,#3f73e9,#5d82e6);color:#fff;padding:14px 16px;font-weight:900;box-shadow:0 8px 18px rgba(45,99,226,.18)}.primary:hover{transform:translateY(-1px)}
+.progress-card{margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}.progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.progress-top strong{font-size:14px}.tag{font-size:10px;font-weight:850;border-radius:999px;background:#edf2fa;color:#4c628e;padding:5px 9px}.tag.good{background:#e6f7ef;color:#11734e}.tag.warn{background:#fff2da;color:#9b6000}.progress{height:9px;background:#e8edf5;border-radius:999px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#3472e9,#e71a88);transition:.3s}.progress-foot{display:flex;justify-content:space-between;margin-top:7px;font-size:12px;color:var(--muted)}
+.guide{padding:24px}.welcome{border:1px solid #d8e3f3;background:linear-gradient(145deg,#f9fbff,#f4f8ff);border-radius:17px;padding:24px}.welcome h2{font-size:24px;margin:0 0 8px;color:var(--navy)}.welcome p{color:var(--muted);line-height:1.55;margin:0}.easy-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.easy-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}.easy-card .num{width:34px;height:34px;border-radius:11px;background:#eaf1ff;color:var(--blue);display:grid;place-items:center;font-weight:900;margin-bottom:11px}.easy-card strong{display:block;margin-bottom:5px}.easy-card span{font-size:12px;color:var(--muted);line-height:1.45}.log-wrap{margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid #1b2c52}.log-head{background:#16264a;color:#fff;padding:11px 14px;font-weight:800;font-size:13px;display:flex;justify-content:space-between}.live{color:#6be0a7}.logs{height:215px;overflow:auto;background:#0b1730;color:#cfe0ff;padding:13px;font:12px/1.55 Consolas,monospace}.log{margin-bottom:6px}.log b{color:#6b9bff}.log.error{color:#ffb1c0}.ready-banner{display:none;margin-top:18px;background:#e8f8f1;border:1px solid #bce9d5;color:#166f50;border-radius:13px;padding:14px;font-weight:800}.ready-banner.show{display:block}
+.review-layout{display:grid;grid-template-columns:1fr;gap:18px}.review-panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}.review-header{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.review-title{display:flex;align-items:center;gap:11px}.review-title .panel-icon{background:#eaf1ff}.status-pill{border-radius:999px;padding:8px 12px;font-size:11px;font-weight:900;background:#e9f7f1;color:#13805a}.review-body{padding:20px}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}.review-card{border:1px solid var(--line);border-radius:15px;padding:16px;background:#fff;margin-bottom:14px}.review-card h3{margin:0 0 9px;font-size:13px;color:#34425f;display:flex;align-items:center;gap:7px}.review-card .textarea{min-height:100px;resize:vertical}.review-card .textarea.tall{min-height:150px}.review-card.readonly .input,.review-card.readonly .textarea{background:#fff;border-color:#e0e7f0}.review-card.readonly .input:disabled,.review-card.readonly .textarea:disabled{color:#18243d;opacity:1;-webkit-text-fill-color:#18243d}.specs{width:100%;border-collapse:collapse}.specs td{padding:9px 10px;border-bottom:1px solid #edf1f6;font-size:13px}.specs td:first-child{font-weight:800;color:#40506e;width:45%}.images{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.images img{width:100%;aspect-ratio:1;object-fit:contain;border:1px solid var(--line);border-radius:10px;background:#fff}.template-preview{border:1px solid var(--line);border-radius:14px;background:#f8faff;min-height:240px;overflow:hidden;display:grid;place-items:center}.template-preview iframe{width:100%;height:520px;border:0;background:#fff}.template-placeholder{text-align:center;padding:28px;color:var(--muted)}.template-placeholder .pdficon{width:60px;height:60px;border-radius:18px;background:#e9f1ff;color:var(--blue);display:grid;place-items:center;font-size:26px;margin:0 auto 12px}.actions-row{position:sticky;bottom:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:14px 20px;display:flex;justify-content:flex-end;gap:10px;z-index:10}.btn{border:0;border-radius:12px;padding:12px 17px;font-weight:900}.btn-light{background:#edf3fc;color:#2d56aa}.btn-green{background:linear-gradient(135deg,#13a76c,#32b780);color:#fff}.btn-pink{background:linear-gradient(135deg,#e71987,#f02f9a);color:#fff}.btn-dark{background:#122957;color:#fff}.btn-outline{background:#fff;border:1px solid #cbd7ea;color:#263c6d}.back-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}.back-row button{border:0;background:transparent;color:#315cc3;font-weight:850;padding:7px 2px}.edit-note{font-size:12px;color:var(--muted)}
+.toast{position:fixed;right:22px;bottom:22px;z-index:90;background:#14264c;color:#fff;border-radius:13px;padding:13px 16px;box-shadow:0 15px 34px rgba(10,25,58,.25);max-width:380px;display:none}.toast.show{display:block}.toast.good{background:#126e50}.toast.bad{background:#9e3046}
+/* Login gate */
+.login-gate{position:fixed;inset:0;background:rgba(5,18,45,.72);backdrop-filter:blur(6px);display:grid;place-items:center;z-index:100}.login-card{width:min(520px,calc(100vw - 30px));background:#fff;border-radius:24px;box-shadow:0 30px 90px rgba(3,13,36,.38);overflow:hidden}.login-top{background:linear-gradient(125deg,#071b43,#11377f);color:#fff;padding:24px}.login-brand{display:flex;gap:12px;align-items:center}.login-brand .logo{width:44px;height:44px}.login-top h2{margin:0;font-size:21px}.login-top p{margin:7px 0 0;font-size:13px;opacity:.8}.login-body{padding:24px}.connect-visual{width:86px;height:86px;margin:0 auto 16px;border-radius:50%;background:#edf3ff;display:grid;place-items:center;font-size:34px;color:var(--blue);position:relative}.connect-visual:after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid #dce7fb}.connect-visual.checking:after{border-color:transparent #4b78e8 #4b78e8 transparent;animation:spin 1s linear infinite}.connect-visual.ok{background:#e8f8f1;color:#129765}.connect-visual.fail{background:#fff1f3;color:#c13b53}@keyframes spin{to{transform:rotate(360deg)}}.login-status{text-align:center}.login-status h3{margin:0 0 7px;font-size:18px}.login-status p{margin:0;color:var(--muted);line-height:1.5;font-size:13px}.login-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.login-actions .wide{grid-column:1/-1}.small-help{text-align:center;font-size:11px;color:#8a95a8;margin-top:13px;line-height:1.45}
+.login-choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.login-choice{border:1px solid #d7e1f2;background:#f8fbff;border-radius:15px;padding:14px}.login-choice.recommended{border-color:#b9cdf7;background:#f3f7ff}.login-choice h4{margin:0 0 6px;font-size:13px;color:#1a2c52}.login-choice p{margin:0 0 12px;font-size:11px;line-height:1.45;color:#687995}.login-choice .btn{width:100%;padding:11px 12px}.login-divider{display:flex;align-items:center;gap:10px;margin:16px 0 2px;color:#91a0b6;font-size:11px}.login-divider:before,.login-divider:after{content:"";height:1px;flex:1;background:#e0e7f2}.login-note{margin-top:13px;padding:11px 12px;border-radius:12px;background:#fff8e8;border:1px solid #f1deb3;color:#7d5a0a;font-size:11px;line-height:1.5}@media(max-width:620px){.login-choice-grid{grid-template-columns:1fr}}
+.sheet-setup-form{display:grid;gap:13px;margin-top:17px}.sheet-setup-form label{font-size:12px;font-weight:850;color:#31405f}.sheet-setup-form .input{margin-top:6px}.sheet-help-box{margin-top:14px;padding:12px 13px;border-radius:12px;background:#f5f8fe;border:1px solid #dce6f5;color:#5d6d88;font-size:12px;line-height:1.5}.sheet-error{display:none;margin-top:12px;padding:11px 12px;border-radius:11px;background:#fff0f3;border:1px solid #f1c2cc;color:#9f3048;font-size:12px;line-height:1.45}.sheet-error.show{display:block}.manual-tag.connected{background:#e6f7ef;color:#11734e}.manual-tag.setup{background:#fff2da;color:#9b6000}
+@media(max-width:980px){.topbar{height:auto;padding:14px 16px;align-items:flex-start;gap:12px}.top-right{flex-direction:column;align-items:flex-end}.brand-title{font-size:16px}.grid{grid-template-columns:1fr}.easy-steps{grid-template-columns:1fr}.two{grid-template-columns:1fr}.images{grid-template-columns:repeat(3,1fr)}.workspace,.flowbar{padding-left:12px;padding-right:12px}.flow-step{font-size:12px;padding:10px}.flow-step span:last-child{display:none}}
+
+.image-studio-toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 12px}.image-studio-summary{font-size:12px;color:var(--muted);margin-left:auto}.image-card{border:1px solid var(--line);border-radius:13px;background:#fff;padding:8px;box-shadow:0 5px 16px rgba(26,47,93,.05)}.image-card img{border:0!important;border-radius:9px}.image-card-head{display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:6px}.image-card-head strong{font-size:11px;color:#334565}.image-card-actions{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:7px}.mini-btn{border:1px solid #d3deee;background:#f7faff;color:#2b519f;border-radius:8px;padding:7px 6px;font-size:10px;font-weight:850}.mini-btn.locked{background:#fff3d8;color:#8a5c00;border-color:#efd59f}.mini-btn.regen{background:#edf3ff;color:#2758bf}.similarity-pill{font-size:10px;font-weight:850;border-radius:999px;padding:4px 7px;background:#e8f8f1;color:#137050}.similarity-pill.warn{background:#fff1dc;color:#996000}.similarity-pill.bad{background:#fff0f3;color:#a2324a}.reference-panel{display:none;margin-top:12px;border-top:1px solid var(--line);padding-top:12px}.reference-panel.show{display:block}.reference-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.reference-item{border:1px solid var(--line);border-radius:10px;padding:7px;background:#fafcff}.reference-item img{width:100%;aspect-ratio:1;object-fit:contain;border-radius:7px;background:white}.reference-item div{font-size:9px;color:var(--muted);margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media(max-width:980px){.reference-grid{grid-template-columns:repeat(3,1fr)}.image-studio-summary{width:100%;margin-left:0}}
+
+.top-history{border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 13px;font-weight:800;color:#fff;background:rgba(255,255,255,.09)}
+.retry-tools{display:none;margin-top:12px;padding:12px;border:1px solid #efc2ca;background:#fff4f6;border-radius:12px;gap:8px;align-items:center;flex-wrap:wrap}.retry-tools.show{display:flex}.retry-tools span{font-size:12px;color:#95374a;font-weight:750;flex:1}.tool-btn{border:1px solid #cbd8ec;background:#fff;color:#294f9f;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:850}.tool-btn.danger{border-color:#efc1ca;color:#aa3047;background:#fff}
+.completion-card{display:none;border:1px solid #b9e4d1;background:linear-gradient(145deg,#f4fff9,#ecfaf4);border-radius:15px;padding:17px;margin-top:14px}.completion-card.show{display:block}.completion-card h3{margin:0 0 9px;color:#116f4d}.completion-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.completion-item{border:1px solid #d7ede3;background:#fff;border-radius:10px;padding:10px}.completion-item small{display:block;color:#718078;font-weight:700}.completion-item strong{display:block;margin-top:3px;font-size:12px}.completion-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.history-gate{display:none;position:fixed;inset:0;background:rgba(6,18,45,.68);z-index:95;align-items:center;justify-content:center;padding:20px}.history-gate.show{display:flex}.history-card{width:min(940px,96vw);max-height:86vh;background:#fff;border-radius:20px;box-shadow:0 25px 80px rgba(0,0,0,.28);overflow:hidden}.history-head{background:#0c2c68;color:#fff;padding:17px 20px;display:flex;justify-content:space-between;align-items:center}.history-body{padding:15px;max-height:70vh;overflow:auto}.history-row{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:10px;align-items:center;padding:11px;border-bottom:1px solid #edf1f6;font-size:12px}.history-row strong{font-size:13px}.history-status{font-size:10px;font-weight:850;padding:5px 7px;border-radius:999px;background:#edf2fa;color:#4d628d}.history-status.done{background:#e7f8ef;color:#137452}.history-status.fail{background:#fff0f3;color:#a6314a}
+.image-card.primary-image{outline:2px solid #2d63e2;outline-offset:1px}.primary-badge{font-size:9px;background:#e8efff;color:#2459c7;border-radius:999px;padding:3px 6px;font-weight:900}.image-order-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:5px}.image-order-actions .mini-btn{padding:6px 4px}
+@media(max-width:980px){.completion-grid{grid-template-columns:1fr 1fr}.history-row{grid-template-columns:1fr 1fr}.top-history{font-size:11px;padding:8px}}
+
+/* V4 guided user interface */
+.mode-toggle{border:1px solid rgba(255,255,255,.24);border-radius:12px;padding:10px 13px;font-weight:900;color:#fff;background:rgba(255,255,255,.10);white-space:nowrap}.mode-toggle.admin{background:#fff;color:#15366f}.simple-mode .admin-only{display:none!important}.admin-panel{margin-top:18px;border:1px solid #d7e1ef;border-radius:16px;background:#fff;padding:16px}.admin-panel h3{margin:0 0 5px}.admin-panel p{margin:0 0 13px;color:var(--muted);font-size:12px}.admin-actions{display:flex;gap:8px;flex-wrap:wrap}
+.simple-dashboard{margin-bottom:18px;background:linear-gradient(145deg,#ffffff,#f6f9ff);border:1px solid #d8e2f1;border-radius:20px;box-shadow:var(--shadow);padding:22px}.dashboard-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.dashboard-head h1{margin:0;color:var(--navy);font-size:27px}.dashboard-head p{margin:6px 0 0;color:var(--muted);font-size:13px}.mode-badge{background:#e8f2ff;color:#2657b9;border-radius:999px;padding:7px 11px;font-size:11px;font-weight:900}.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:18px}.stat-card{border:1px solid #e0e7f1;border-radius:14px;background:#fff;padding:15px}.stat-card small{display:block;color:#6f7d95;font-weight:750;font-size:11px}.stat-card strong{display:block;font-size:25px;margin-top:5px;color:#152b55}.stat-card.warn strong{color:#ad6b00}.stat-card.bad strong{color:#b33850}.stat-card.good strong{color:#137452}.dashboard-action{display:grid;grid-template-columns:minmax(260px,420px) 1fr;gap:13px;margin-top:14px}.smart-action{border:0;border-radius:14px;background:linear-gradient(135deg,#2e6de5,#4f7ce7);color:#fff;padding:16px 20px;font-weight:950;font-size:15px;box-shadow:0 10px 22px rgba(45,99,226,.20)}.smart-action:hover{transform:translateY(-1px)}.recent-box{border:1px solid #e1e7f0;background:#fff;border-radius:14px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.recent-box small{display:block;color:#7a879c;font-weight:700}.recent-box strong{display:block;margin-top:3px}.recent-box button{border:0;border-radius:10px;background:#edf3ff;color:#2856ad;font-weight:900;padding:9px 12px}.smart-hint{font-size:11px;color:#71809a;margin-top:8px}
+.attention-panel{border:1px solid #efd59f;background:linear-gradient(145deg,#fffaf0,#fffdf8);border-radius:16px;padding:16px;margin-bottom:14px}.attention-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:11px}.attention-head h3{margin:0;color:#825600;font-size:15px}.attention-count{border-radius:999px;background:#fff0cf;color:#8a5a00;padding:6px 9px;font-size:10px;font-weight:900}.attention-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.attention-item{border:1px solid #e5eaf1;background:#fff;border-radius:11px;padding:10px 11px;display:flex;align-items:flex-start;gap:9px}.attention-icon{width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-weight:950;flex:0 0 auto;background:#e9f8f1;color:#12704f}.attention-item.warn .attention-icon{background:#fff1d8;color:#986100}.attention-item.info .attention-icon{background:#eaf1ff;color:#2f5db8}.attention-item strong{display:block;font-size:12px}.attention-item span{display:block;font-size:10px;color:#78869b;margin-top:2px;line-height:1.35}.price-confirm{margin-top:10px;display:none;align-items:center;justify-content:space-between;gap:10px;border:1px solid #f0cf8e;background:#fff8e8;border-radius:11px;padding:10px 11px}.price-confirm.show{display:flex}.price-confirm button{border:0;border-radius:9px;background:#fff;color:#895900;font-weight:900;padding:8px 10px;border:1px solid #e6c77f}.price-confirm.confirmed{border-color:#bce4d2;background:#effbf5;color:#126d4d}.price-confirm.confirmed button{display:none}
+.simple-error{display:none;margin-top:12px;padding:13px;border:1px solid #efc2ca;background:#fff4f6;border-radius:12px}.simple-error.show{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.simple-error strong{color:#99394c}.simple-error span{font-size:12px;color:#8f4a59;flex:1;min-width:220px}.simple-error button{border:0;border-radius:9px;padding:9px 11px;font-weight:900}.simple-error .fix{background:#b23d54;color:#fff}.simple-error .open-admin{background:#fff;color:#8f3548;border:1px solid #e9bcc5}
+.flow.five{grid-template-columns:repeat(5,1fr)}.simple-mode .image-card-actions,.simple-mode .image-order-actions{display:none!important}.simple-mode .review-card h3{font-size:14px}.simple-mode .actions-row{gap:12px}.simple-mode #approveBtn{font-size:14px;padding:13px 20px}.simple-mode #sellerBtn{font-size:14px;padding:13px 20px}.simple-mode .back-row .edit-note{font-size:13px}.admin-only-block{display:block}
+@media(max-width:980px){.stat-grid{grid-template-columns:repeat(2,1fr)}.dashboard-action{grid-template-columns:1fr}.attention-list{grid-template-columns:1fr}.flow.five{grid-template-columns:repeat(5,1fr)}.mode-toggle{font-size:11px;padding:8px 9px}}
+@media(max-width:620px){.stat-grid{grid-template-columns:1fr 1fr}.simple-dashboard{padding:16px}.dashboard-head h1{font-size:22px}.recent-box{align-items:flex-start;flex-direction:column}.flow.five .flow-step{padding:8px 6px}.flow.five .flow-num{width:24px;height:24px;font-size:11px}}
+</style>
+</head>
+<body class="simple-mode">
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">N</div>
+      <div><div class="brand-title">NUNES · Product Research & IndiaMART V4.1</div><div class="brand-sub">Simple Mode · Guided Product Publishing</div></div>
+    </div>
+    <div class="top-right">
+      <div id="connectionPill" class="connection-pill"><span class="connection-dot"></span><span id="connectionText">IndiaMART checking…</span></div>
+      <button id="modeToggle" class="mode-toggle" onclick="toggleMode()">⚙ Admin Mode</button>
+      <button class="top-history" onclick="openHistory()">☰ Recent Products</button>
+      <button id="topNext" class="top-next" onclick="smartAction()" disabled>Start Next Product</button>
+    </div>
+  </header>
+
+  <div class="flowbar">
+    <div class="flow five">
+      <div id="flow1" class="flow-step active"><span class="flow-num">1</span><span>Product</span></div>
+      <div id="flow2" class="flow-step"><span class="flow-num">2</span><span>Research</span></div>
+      <div id="flow3" class="flow-step"><span class="flow-num">3</span><span>Review</span></div>
+      <div id="flow4" class="flow-step"><span class="flow-num">4</span><span>PDF</span></div>
+      <div id="flow5" class="flow-step"><span class="flow-num">5</span><span>IndiaMART</span></div>
+    </div>
+  </div>
+
+  <main class="workspace">
+    <section id="inputPage" class="page active">
+      <div class="simple-dashboard">
+        <div class="dashboard-head">
+          <div><h1 id="greetingTitle">Welcome</h1><p>Use one button for the normal workflow. The system will guide you only when something needs attention.</p></div>
+          <span class="mode-badge">SIMPLE MODE</span>
+        </div>
+        <div class="stat-grid">
+          <div class="stat-card"><small>Products Waiting</small><strong id="dashWaiting">—</strong></div>
+          <div class="stat-card warn"><small>Ready for Review</small><strong id="dashReview">—</strong></div>
+          <div class="stat-card bad"><small>Problems</small><strong id="dashProblems">—</strong></div>
+          <div class="stat-card good"><small>Completed Today</small><strong id="dashCompleted">—</strong></div>
+        </div>
+        <div class="dashboard-action">
+          <div><button id="smartActionBtn" class="smart-action" onclick="smartAction()">START NEXT PRODUCT</button><div id="smartActionHint" class="smart-hint">Loads the next pending Sheet product and prepares it automatically.</div></div>
+          <div class="recent-box"><div><small>Recent Product</small><strong id="recentProductName">No recent product yet</strong><small id="recentProductStatus">—</small></div><button id="resumeBtn" onclick="resumeRecent()" disabled>CONTINUE</button></div>
+        </div>
+      </div>
+      <div class="grid">
+        <div class="panel">
+          <div class="panel-head"><div class="panel-icon">▣</div><div><h2>Product Input</h2><p>Just fill the product. The system handles the rest.</p></div></div>
+          <div class="panel-body">
+            <div class="sheet-browser">
+              <div class="sheet-browser-head"><strong>🟦 Google Sheet Products</strong><span id="sheetTag" class="manual-tag">Checking…</span></div>
+              <label class="sheet-label">Sheet tab</label>
+              <select id="sheetTabSelect" class="select" onchange="refreshSheetProducts()"><option value="">Loading sheet tabs…</option></select>
+              <div class="sheet-browser-grid">
+                <div><label class="sheet-label">Search product</label><input id="sheetProductSearch" class="search" placeholder="Type product or model…" oninput="queueSheetSearch()" onkeydown="if(event.key==='Enter'){event.preventDefault();loadSelectedSheetProduct()}"></div>
+                <div><label class="sheet-label">Show</label><select id="sheetStatusFilter" class="select" onchange="renderSheetProducts()"><option value="all">All</option><option value="pending">Pending</option><option value="completed">Completed</option><option value="failed">Failed / Retry</option><option value="uploaded">Uploaded</option><option value="not_uploaded">Not Uploaded</option></select></div>
+              </div>
+              <div class="sheet-product-row">
+                <label class="sheet-label">Product</label>
+                <select id="sheetProductSelect" class="select"><option value="">Choose a product…</option></select>
+              </div>
+              <div class="sheet-actions">
+                <button class="sheet-action primary-sheet" onclick="loadSelectedSheetProduct()">Load Selected Product</button>
+                <button class="sheet-action" onclick="loadSheet()">Load Next Product</button>
+              </div>
+              <div id="sheetSummary" class="sheet-summary">Connecting to your Google Sheet…</div>
+            </div>
+            <input id="sourceRow" type="hidden"><input id="sourceSheetName" type="hidden"><input id="sheetRowJson" type="hidden" value="{}">
+            <div class="step-list">
+              <div class="input-step"><div class="step-circle">1</div><div class="step-title">What product?</div><label class="label">Product Name / Search Keyword</label><input id="productName" class="input" placeholder="Example: Digital pH Meter"></div>
+              <div class="input-step"><div class="step-circle">2</div><div class="step-title">Model <span class="hint">(optional)</span></div><label class="label">Model / Model Number</label><input id="model" class="input" placeholder="Example: FP20"></div>
+              <div class="input-step"><div class="step-circle">3</div><div class="step-title">Product photo <span class="hint">(optional)</span></div><label class="label">Genuine Product Image</label><div class="upload"><input id="productImage" type="file" accept="image/*"></div></div>
+            </div>
+            <div id="sourceInfo" style="display:none" class="ready-banner"></div>
+            <button id="prepareBtn" class="primary" onclick="prepareProduct()">🔎 Public Research & Prepare</button>
+            <div class="progress-card">
+              <div class="progress-top"><strong>Progress</strong><span id="stageTag" class="tag">READY</span></div>
+              <div class="progress"><div id="bar" class="progress-fill"></div></div>
+              <div class="progress-foot"><span id="stageText">Ready for a product</span><strong id="percent">0%</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="guide">
+          <div class="welcome">
+            <h2>The system does the technical work.</h2>
+            <p>For normal work, use <b>Start Next Product</b>. Review only the items marked for attention, then approve and continue.</p>
+            <div class="easy-steps">
+              <div class="easy-card"><div class="num">1</div><strong>Start</strong><span>Load the next Sheet product automatically or choose a specific product.</span></div>
+              <div class="easy-card"><div class="num">2</div><strong>System Prepares</strong><span>Research, content and five product images are prepared automatically.</span></div>
+              <div class="easy-card"><div class="num">3</div><strong>Review Attention</strong><span>Check only uncertain items, approve, then continue to IndiaMART.</span></div>
+            </div>
+          </div>
+          <div id="readyBanner" class="ready-banner">✅ Product research is ready. Click <b>Review & Approve</b>.</div>
+          <div class="log-wrap admin-only"><div class="log-head"><span>Live Progress</span><span class="live">● Live</span></div><div id="logs" class="logs"><div class="log"><b>[SYSTEM]</b> Ready.</div></div></div><div id="retryTools" class="simple-error"><strong>Needs Attention</strong><span id="retryMessage">A step could not finish.</span><button class="fix" onclick="retryFailedStep()">Fix & Retry Automatically</button><button class="open-admin" onclick="setMode('admin')">Open Admin Tools</button></div>
+          <div class="admin-panel admin-only">
+            <h3>Admin Tools</h3><p>Technical controls are kept here so normal employees do not need to use them.</p>
+            <div class="admin-actions"><button class="tool-btn danger" onclick="retryFailedStep()">↻ Retry Failed Step</button><button class="tool-btn" onclick="showDiagnostics()">Selector Diagnostics</button><button class="tool-btn" onclick="restoreLatestBackup()">Restore Last Checkpoint</button><button class="tool-btn" onclick="openSheetSetup()">Google Sheet Settings</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviewPage" class="page">
+      <div class="back-row"><button onclick="showPage('input')">← Back to Product</button><span class="edit-note">Check the details. Edit only if needed.</span></div>
+      <div class="review-panel">
+        <div class="review-header">
+          <div class="review-title"><div class="panel-icon">▤</div><div><strong style="font-size:18px">Prepared Product Template</strong><div class="edit-note">This is exactly what will be approved before seller posting.</div></div></div>
+          <span id="recordStatus" class="status-pill">REVIEW READY</span>
+        </div>
+        <div class="review-body">
+          <div class="attention-panel">
+            <div class="attention-head"><h3>⚠ Attention Required</h3><span id="attentionCount" class="attention-count">Checking…</span></div>
+            <div id="attentionList" class="attention-list"></div>
+            <div id="priceConfirm" class="price-confirm"><div><strong id="priceConfirmTitle">Selling Price</strong><div id="priceConfirmText" style="font-size:11px;margin-top:3px"></div></div><button onclick="confirmSellingPrice()">✓ Confirm Price</button></div>
+          </div>
+          <div class="two">
+            <div class="review-card readonly"><h3>🏢 Company Name</h3><input id="editCompany" class="input" disabled></div>
+            <div class="review-card readonly"><h3>🌍 Company Location</h3><input id="editLocation" class="input" disabled></div>
+          </div>
+          <div class="two">
+            <div class="review-card readonly"><h3>📦 Product / Listing Name</h3><input id="editName" class="input" disabled></div>
+            <div class="review-card readonly"><h3>🔢 Model / Model Number</h3><input id="editModel" class="input" disabled></div>
+          </div>
+          <div class="review-card readonly"><h3>📄 Description</h3><textarea id="editDescription" class="textarea" disabled></textarea></div>
+          <div class="two">
+            <div class="review-card readonly"><h3>⭐ Key Features — one per line</h3><textarea id="editFeatures" class="textarea tall" disabled></textarea></div>
+            <div class="review-card readonly"><h3>◆ Applications — one per line</h3><textarea id="editApplications" class="textarea tall" disabled></textarea></div>
+          </div>
+          <div class="review-card readonly"><h3>⚙ Specifications — Name: Value</h3><textarea id="editSpecs" class="textarea tall" disabled></textarea></div>
+          <div class="review-card">
+            <h3>🖼 Image Studio — 5 Product Images</h3>
+            <div class="image-studio-toolbar admin-only">
+              <button class="mini-btn regen" onclick="regenerateUnlocked()">↻ Regenerate Unlocked</button>
+              <button class="mini-btn" onclick="autoDiversify()">✨ Auto Diversify</button>
+              <button class="mini-btn" onclick="toggleReferences()">🗂 Show References</button>
+              <span id="similaritySummary" class="similarity-pill">Similarity: not checked</span>
+              <span id="referenceSummary" class="image-studio-summary">References: —</span>
+            </div>
+            <div id="images" class="images"><div class="template-placeholder">Images will appear here after preparation.</div></div>
+            <div id="referencePanel" class="reference-panel"><div id="referenceGrid" class="reference-grid"></div></div>
+          </div>
+          <div class="review-card"><h3>📑 PDF Template Preview</h3><div id="templatePreview" class="template-preview"><div class="template-placeholder"><div class="pdficon">PDF</div><strong>PDF not built yet</strong><div style="margin-top:6px">Click “Approve & Continue”. The finished template will appear here.</div></div></div></div>
+          <div id="completionCard" class="completion-card">
+            <h3>✓ IndiaMART Run Summary</h3>
+            <div id="completionGrid" class="completion-grid"></div>
+            <div class="completion-actions"><button id="manualCompleteBtn" class="btn btn-green" onclick="markManualCompleted()" style="display:none">✓ I Submitted / Completed Review</button><button class="btn btn-light" onclick="openHistory()">Recent Products</button></div>
+          </div>
+        </div>
+        <div class="actions-row">
+          <button id="editBtn" class="btn btn-light" onclick="toggleEditMode()">✎ Edit Details</button>
+          <button id="approveBtn" class="btn btn-green" onclick="approveBuild()">✓ APPROVE & CONTINUE</button>
+          <button id="sellerBtn" class="btn btn-pink" onclick="continueIndiaMart()" disabled>→ OPEN INDIA MART</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="loginGate" class="login-gate">
+  <div class="login-card">
+    <div class="login-top">
+      <div class="login-brand">
+        <div class="logo">N</div>
+        <div>
+          <h2>IndiaMART Account</h2>
+          <p>Login comes first. Connect once, then press Next → Product Page.</p>
+        </div>
+      </div>
+    </div>
+    <div class="login-body">
+      <div id="connectVisual" class="connect-visual checking">↻</div>
+      <div class="login-status">
+        <h3 id="loginTitle">Checking your IndiaMART account…</h3>
+        <p id="loginMessage">First we try your saved session and the IndiaMART account already logged into Chrome.</p>
+      </div>
+
+      <div class="login-choice-grid">
+        <div class="login-choice recommended">
+          <h4>1. Auto Connect Existing Account</h4>
+          <p>Recommended. Reuse the IndiaMART seller account already signed in to your normal Chrome.</p>
+          <button id="retryConnectBtn" class="btn btn-dark" onclick="autoConnect()" disabled>↻ Auto Connect</button>
+        </div>
+        <div class="login-choice">
+          <h4>2. IndiaMART Login</h4>
+          <p>If auto-connect is not available, open the official IndiaMART login and complete mobile/OTP there.</p>
+          <button id="manualLoginBtn" class="btn btn-outline" onclick="startManualLogin()" disabled>🔐 Open IndiaMART Login</button>
+        </div>
+      </div>
+
+      <div class="login-note">
+        <b>Safe login:</b> the app does not ask for or save your OTP. Manual sign-in happens directly in the official IndiaMART Chrome window. After success, the local session is saved for future automatic reconnects.
+      </div>
+
+      <div class="login-actions">
+        <button id="loginNextBtn" class="btn btn-green wide" onclick="enterWorkspace()" disabled>Next → Product Page</button>
+      </div>
+      <div class="small-help">The normal path is automatic connection. Use <b>Open IndiaMART Login</b> only if your existing Chrome session cannot be reused.</div>
+    </div>
+  </div>
+</div>
+<div id="sheetGate" class="login-gate" style="display:none">
+  <div class="login-card">
+    <div class="login-top">
+      <div class="login-brand">
+        <div class="logo">G</div>
+        <div>
+          <h2>Connect Google Sheet</h2>
+          <p>Optional — manual product entry always works without this.</p>
+        </div>
+      </div>
+    </div>
+    <div class="login-body">
+      <div class="login-status">
+        <h3>One-time Google Sheet setup</h3>
+        <p>Paste the Apps Script Web App URL and the same token used in <b>apps_script/Code.gs</b>.</p>
+      </div>
+
+      <div class="sheet-help-box">
+        <b>Quick setup:</b> Google Sheet → Extensions → Apps Script → paste <b>apps_script/Code.gs</b> →
+        change TOKEN → Deploy as Web App → copy the <b>/exec</b> URL here.
+      </div>
+
+      <div class="sheet-setup-form">
+        <label>Apps Script Web App URL
+          <input id="sheetSetupUrl" class="input" placeholder="https://script.google.com/macros/s/.../exec">
+        </label>
+        <label>Apps Script Token
+          <input id="sheetSetupToken" type="password" class="input" placeholder="Same TOKEN used in Code.gs">
+        </label>
+      </div>
+
+      <div id="sheetSetupError" class="sheet-error"></div>
+
+      <div class="login-actions">
+        <button class="btn btn-outline" onclick="closeSheetSetup()">Use Manual Entry</button>
+        <button id="saveSheetBtn" class="btn btn-green" onclick="saveSheetConfig()">Save & Connect</button>
+      </div>
+
+      <div class="small-help">
+        The URL and token are stored privately on the <b>server PC only</b> under Local AppData. They are never saved in the shared project/NAS folder, product PDFs, or public research.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="historyGate" class="history-gate">
+  <div class="history-card">
+    <div class="history-head"><div><strong>Recent Products</strong><div style="font-size:11px;opacity:.8;margin-top:3px">Reopen any prepared product without starting again.</div></div><button class="tool-btn" onclick="closeHistory()">Close</button></div>
+    <div id="historyBody" class="history-body">Loading…</div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+<script>
+let latest=null,lastLogCount=-1,currentPage='input',editMode=false,loginWaitTimer=null,lastTextKey='',lastImagesKey='',lastPdfKey='',sheetCanConfigure=false,imageStudioState=null,sheetProducts=[],sheetBrowserReady=false,lastFailureKey='',lastCompletionKey='',sheetSearchTimer=null,sheetSearchSerial=0,uiMode='simple',lastSheetCounts={},recentProductName='',priceConfirmed=false,workflowBusy=false;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function splitLines(v){return String(v||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
+function specsText(arr){return (arr||[]).map(x=>`${x.name}: ${x.value}`).join('\n')}
+function toast(msg,type=''){const t=$('toast');t.textContent=msg;t.className='toast show '+type;setTimeout(()=>{t.className='toast'},3200)}
+function setMode(mode){uiMode=mode==='admin'?'admin':'simple';document.body.classList.toggle('simple-mode',uiMode==='simple');const b=$('modeToggle');if(b){b.textContent=uiMode==='simple'?'⚙ Admin Mode':'✓ Simple Mode';b.classList.toggle('admin',uiMode==='admin')}if($('approveBtn'))$('approveBtn').textContent=uiMode==='simple'?'✓ APPROVE & CONTINUE':'✓ Approve & Build PDF';toast(uiMode==='simple'?'Simple Mode enabled.':'Admin Mode enabled.')} 
+function toggleMode(){setMode(uiMode==='simple'?'admin':'simple')}
+function initMode(){uiMode='simple';document.body.classList.add('simple-mode');const b=$('modeToggle');if(b){b.textContent='⚙ Admin Mode';b.classList.remove('admin')}if($('approveBtn'))$('approveBtn').textContent='✓ APPROVE & CONTINUE'}
+function setGreeting(){const h=new Date().getHours();$('greetingTitle').textContent=h<12?'Good Morning':h<17?'Good Afternoon':'Good Evening'}
+function getSellingPrice(){let row=(latest?.source?.sheet_row&&typeof latest.source.sheet_row==='object')?latest.source.sheet_row:{};if(!Object.keys(row).length){try{row=JSON.parse($('sheetRowJson').value||'{}')}catch{row={}}}for(const [k,v] of Object.entries(row)){const key=String(k).trim().toLowerCase();if(['price','selling price','product price','rate','unit price','sale price','sales price','offer price','selling rate'].includes(key)&&String(v||'').trim())return String(v).trim()}return ''}
+function attentionItem(label,ok,detail,kind=''){return `<div class="attention-item ${ok?'':(kind||'warn')}"><div class="attention-icon">${ok?'✓':kind==='info'?'i':'!'}</div><div><strong>${esc(label)}</strong><span>${esc(detail)}</span></div></div>`}
+function renderAttention(){if(!latest||!$('attentionList'))return;const a=latest.approved||{},assets=latest.assets||{},specs=a.specifications||[],images=assets.image_web_urls||[],pdf=!!assets.pdf_web_url,model=String(a.model||'').trim(),price=getSellingPrice();let needs=0;const items=[];const add=(label,ok,detail,kind='')=>{if(!ok&&kind!=='info')needs++;items.push(attentionItem(label,ok,detail,kind))};add('Product Name',!!String(a.listing_name||latest.record_product_name||'').trim(),'Product name is prepared.');add('Model',!!model,model?'Model number is available.':'Model is not available. Review only if this product requires a model.');add('Description',String(a.description||'').trim().length>=20,'Description is prepared from available evidence.');add('Specifications',specs.length>0,specs.length?`${specs.length} specification item(s) prepared.`:'No specifications were found.');add('Images',images.length>=5,images.length>=5?'Five product images are ready.':`${images.length}/5 images are ready.`);add('PDF',pdf,pdf?'Approved PDF is ready.':'PDF will be created when you approve.','info');add('Duplicate Check',false,'Runs automatically when the IndiaMART seller step starts.','info');$('attentionList').innerHTML=items.join('');$('attentionCount').textContent=needs?`${needs} item${needs===1?'':'s'} to check`:'Everything looks ready';const pc=$('priceConfirm');if(price){pc.classList.add('show');pc.querySelector('button').style.display='';$('priceConfirmTitle').textContent='Selling Price';$('priceConfirmText').textContent=(priceConfirmed?'Confirmed: ':'Please confirm before seller review: ')+price;pc.classList.toggle('confirmed',priceConfirmed);if(!priceConfirmed)needs++}else{pc.classList.add('show');pc.classList.remove('confirmed');$('priceConfirmTitle').textContent='Selling Price';$('priceConfirmText').textContent='No selling price was found in the source row. Existing behavior is preserved: IndiaMART price can remain blank.';pc.querySelector('button').style.display='none'}$('attentionCount').textContent=needs?`${needs} attention item${needs===1?'':'s'}`:'Everything looks ready'}
+function confirmSellingPrice(){priceConfirmed=true;renderAttention();toast('Selling price confirmed.','good')}
+function updateFlow(){const st=latest?.status||'';const ids=['flow1','flow2','flow3','flow4','flow5'];ids.forEach(id=>$(id).className='flow-step');if(!latest){$('flow1').className='flow-step active';return}if(st==='REVIEW_READY'||st==='REVIEW_READY_IMAGE_PENDING'){['flow1','flow2'].forEach(id=>$(id).className='flow-step done');$('flow3').className='flow-step active'}else if(st==='READY_FOR_INDIAMART'){['flow1','flow2','flow3','flow4'].forEach(id=>$(id).className='flow-step done');$('flow5').className='flow-step active'}else if(st==='SELLER_REVIEW_REQUIRED'||st==='SELLER_COMPLETED'){['flow1','flow2','flow3','flow4'].forEach(id=>$(id).className='flow-step done');$('flow5').className='flow-step '+(st==='SELLER_COMPLETED'?'done':'active')}else{$('flow2').className='flow-step active'}}
+function updateSmartAction(){const btn=$('smartActionBtn'),top=$('topNext'),hint=$('smartActionHint');if(!btn||!top)return;if(workflowBusy){btn.textContent='WORKING…';top.textContent='WORKING…';hint.textContent='The system is preparing the current product automatically.';btn.disabled=true;top.disabled=true;return}let text='START NEXT PRODUCT',help='Loads the next pending Sheet product and prepares it automatically.';if(latest){const st=latest.status||'';if(st==='REVIEW_READY'||st==='REVIEW_READY_IMAGE_PENDING'){text='REVIEW & APPROVE';help='Preparation is complete. Review only the attention items.'}else if(st==='READY_FOR_INDIAMART'){text='CONTINUE TO INDIA MART';help='PDF is ready. Continue to the seller form.'}else if(st==='SELLER_REVIEW_REQUIRED'){text='OPEN REVIEW';help='IndiaMART form is filled and waiting for your final review.'}else if(st==='SELLER_COMPLETED'){text='START NEXT PRODUCT';help='This product is complete. Continue with the next pending product.'}else{text='WORKING…';help='The system is preparing this product.'}}else if($('productName')?.value.trim()){text='PREPARE THIS PRODUCT';help='Prepare the product currently loaded below.'}btn.textContent=text;top.textContent=text;hint.textContent=help;top.disabled=false;btn.disabled=false}
+async function smartAction(){if(latest){const st=latest.status||'';if(st==='REVIEW_READY'||st==='REVIEW_READY_IMAGE_PENDING'){showPage('review');return}if(st==='READY_FOR_INDIAMART'){await continueIndiaMart();return}if(st==='SELLER_REVIEW_REQUIRED'){showPage('review');loadCompletion();return}if(st!=='SELLER_COMPLETED'){toast('The system is still working on this product.');return}}if($('productName').value.trim()&&!latest){await prepareProduct();return}await smartStartNext()}
+async function smartStartNext(){if(latest&&latest.status==='SELLER_COMPLETED')latest=null;const ok=await loadSheet();if(!ok)return;if(!$('productName').value.trim()){toast('No pending product was loaded.','bad');return}priceConfirmed=false;await prepareProduct()}
+async function refreshDashboardStats(){try{const r=await fetch('/api/history?limit=500&t='+Date.now());const d=await r.json();const items=d.items||[];const review=items.filter(x=>['REVIEW_READY','REVIEW_READY_IMAGE_PENDING','READY_FOR_INDIAMART'].includes(x.status)).length;const today=new Date();const y=today.getFullYear(),m=String(today.getMonth()+1).padStart(2,'0'),day=String(today.getDate()).padStart(2,'0'),prefix=`${y}-${m}-${day}`;const completed=items.filter(x=>x.status==='SELLER_COMPLETED'&&String(x.completed_at||x.updated_at||'').startsWith(prefix)).length;const recent=items[0];$('dashWaiting').textContent=lastSheetCounts.pending??'—';$('dashProblems').textContent=lastSheetCounts.failed??items.filter(x=>x.last_failure&&x.last_failure.message).length;$('dashReview').textContent=review;$('dashCompleted').textContent=completed;if(recent){recentProductName=recent.record_product_name;$('recentProductName').textContent=recent.listing_name||recent.record_product_name;$('recentProductStatus').textContent=(recent.status||'Prepared').replaceAll('_',' ');$('resumeBtn').disabled=false}else{recentProductName='';$('resumeBtn').disabled=true}}catch{}}
+async function resumeRecent(){if(!recentProductName)return;try{const r=await fetch('/api/history/open',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:recentProductName})});const d=await r.json();if(r.ok&&d.result){priceConfirmed=false;renderRecord(d.result);showPage('review');toast('Recent product resumed.','good')}}catch{toast('Could not resume the recent product.','bad')}}
+function setConnection(ok,text){const p=$('connectionPill');p.className='connection-pill'+(ok?' connected':'');$('connectionText').textContent=text||(ok?'IndiaMART Connected':'IndiaMART Not Connected')}
+function setLoginUI(mode,title,message){
+  const v=$('connectVisual');
+  v.className='connect-visual '+(mode==='checking'?'checking':mode==='ok'?'ok':'fail');
+  v.textContent=mode==='ok'?'✓':mode==='checking'?'↻':'!';
+  $('loginTitle').textContent=title;
+  $('loginMessage').textContent=message;
+  $('retryConnectBtn').disabled=mode==='checking';
+  $('manualLoginBtn').disabled=mode==='checking'||mode==='ok';
+  $('loginNextBtn').disabled=mode!=='ok';
+}
+
+async function autoConnect(){
+  clearTimeout(loginWaitTimer);
+  setLoginUI('checking','Connecting your existing IndiaMART account…','Checking the saved automation session, then copying the login from your normal Chrome profile.');
+  setConnection(false,'IndiaMART checking…');
+  try{
+    const r=await fetch('/api/indiamart-autoconnect',{method:'POST'});
+    const d=await r.json().catch(()=>({}));
+    if(r.ok&&d.connected){
+      setLoginUI('ok','Existing IndiaMART account connected',d.message||'Your seller account is ready.');
+      setConnection(true,'IndiaMART Connected');
+      return;
+    }
+    setLoginUI('fail','Existing account not detected',d.message||'Open IndiaMART in normal Chrome, confirm you are logged in, then press Connect Existing Chrome Account again.');
+    setConnection(false,'Existing Account Not Connected');
+  }catch(e){
+    setLoginUI('fail','Could not check Chrome account','Keep normal Chrome open and logged into IndiaMART, then try again.');
+    setConnection(false,'Existing Account Not Connected');
+  }
+}
+
+async function startManualLogin(){
+  clearTimeout(loginWaitTimer);
+  setLoginUI('checking','Opening official IndiaMART login…','Complete your mobile number and OTP in the IndiaMART Chrome window. This popup will update automatically after login.');
+  setConnection(false,'Waiting for IndiaMART Login…');
+  try{
+    const r=await fetch('/api/indiamart-login',{method:'POST'});
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok){
+      setLoginUI('fail','Could not start IndiaMART login',d.message||'Try Auto Connect again, or retry the login.');
+      return;
+    }
+    waitForManualLogin(0);
+  }catch(e){
+    setLoginUI('fail','Could not start IndiaMART login','Please retry.');
+  }
+}
+
+async function waitForManualLogin(attempt){
+  try{
+    const r=await fetch('/api/indiamart-connection?t='+Date.now());
+    const d=await r.json().catch(()=>({}));
+    if(d.connected){
+      setLoginUI('ok','IndiaMART login completed',d.message||'Your seller account is connected and saved for future starts.');
+      setConnection(true,'IndiaMART Connected');
+      return;
+    }
+    if(!d.busy && attempt>2){
+      setLoginUI('fail','IndiaMART login was not completed',d.message||'Press Open IndiaMART Login and complete the login/OTP.');
+      setConnection(false,'IndiaMART Not Connected');
+      return;
+    }
+  }catch(e){}
+  if(attempt>=600){
+    setLoginUI('fail','Login timed out','Please press Open IndiaMART Login and try again.');
+    return;
+  }
+  loginWaitTimer=setTimeout(()=>waitForManualLogin(attempt+1),1000);
+}
+
+function enterWorkspace(){if($('loginNextBtn').disabled)return;$('loginGate').style.display='none';toast('IndiaMART connected. Loading Google Sheet products…','good');setTimeout(async()=>{await initSheetBrowser();if(!$('productName').value.trim())await loadSheet()},250)}
+
+function showPage(page){currentPage=page;$('inputPage').classList.toggle('active',page==='input');$('reviewPage').classList.toggle('active',page==='review');updateFlow();updateSmartAction();window.scrollTo({top:0,behavior:'smooth'})}
+function nextTop(){smartAction()}
+
+async function initSheetBrowser(){
+  try{
+    const r=await fetch('/api/sheet/tabs?t='+Date.now());
+    const d=await r.json().catch(()=>({}));
+    if(!r.ok||!d.ok){$('sheetSummary').textContent=d.message||'Could not load Sheet tabs.';return false}
+    const sel=$('sheetTabSelect');sel.innerHTML='';
+    (d.tabs||[]).forEach(name=>{const o=document.createElement('option');o.value=name;o.textContent=name;if(name===d.selected)o.selected=true;sel.appendChild(o)});
+    if(!sel.options.length){const o=document.createElement('option');o.value='final sheet';o.textContent='final sheet';sel.appendChild(o)}
+    sheetBrowserReady=true;setSheetTag(true,'Connected');
+    await refreshSheetProducts();return true;
+  }catch(e){$('sheetSummary').textContent='Google Sheet tabs could not be loaded. You can still use Load Next or manual entry.';return false}
+}
+function queueSheetSearch(){
+  clearTimeout(sheetSearchTimer);
+  sheetSearchTimer=setTimeout(()=>refreshSheetProducts(($('sheetProductSearch').value||'').trim()),280);
+}
+async function refreshSheetProducts(searchOverride=null){
+  const sheet=$('sheetTabSelect')?$('sheetTabSelect').value:'';
+  if(!sheet)return;
+  const query=searchOverride===null?($('sheetProductSearch').value||'').trim():String(searchOverride||'').trim();
+  const serial=++sheetSearchSerial;
+  $('sheetSummary').textContent=query?`Searching all rows in ${sheet} for “${query}”…`:'Loading products from '+sheet+'…';
+  const sel=$('sheetProductSelect');sel.innerHTML='<option value="">Loading products…</option>';
+  try{
+    const url='/api/sheet/products?sheet='+encodeURIComponent(sheet)+'&status=all&search='+encodeURIComponent(query)+'&limit='+(query?300:1200)+'&t='+Date.now();
+    const r=await fetch(url);
+    const d=await r.json().catch(()=>({}));
+    if(serial!==sheetSearchSerial)return;
+    if(!r.ok||!d.ok){sheetProducts=[];sel.innerHTML='<option value="">Could not load products</option>';$('sheetSummary').textContent=d.message||'Could not read this Sheet tab.';return}
+    sheetProducts=d.products||[];
+    const c=d.counts||{};lastSheetCounts=c;const cols=d.columns||{};
+    const detected=cols.product?` · Product column: ${cols.product}`:'';
+    const matched=query?` · ${sheetProducts.length} match${sheetProducts.length===1?'':'es'}`:'';
+    $('sheetSummary').textContent=`${c.all||sheetProducts.length} products · ${c.pending||0} pending · ${c.completed||0} completed · ${c.failed||0} retry/failed${matched}${detected}`;
+    renderSheetProducts();refreshDashboardStats();
+  }catch(e){
+    if(serial!==sheetSearchSerial)return;
+    sheetProducts=[];sel.innerHTML='<option value="">Could not load products</option>';$('sheetSummary').textContent='Could not read products from Google Sheet.';
+  }
+}
+function renderSheetProducts(){
+  const sel=$('sheetProductSelect');if(!sel)return;
+  const query=($('sheetProductSearch').value||'').trim().toLowerCase();
+  const filter=$('sheetStatusFilter').value||'all';
+  const previous=sel.value;sel.innerHTML='<option value="">Choose a product…</option>';
+  let shown=0, firstRow='', exactRow='';
+  for(const item of sheetProducts){
+    const productText=String(item.product_name||'');
+    const searchable=`${productText} ${item.model||''} ${item.source_row||''}`.toLowerCase();
+    if(query&&!searchable.includes(query))continue;
+    if(filter==='pending'&&item.state!=='pending')continue;
+    if(filter==='completed'&&item.state!=='completed')continue;
+    if(filter==='failed'&&item.state!=='failed')continue;
+    if(filter==='uploaded'&&!item.uploaded)continue;
+    if(filter==='not_uploaded'&&item.uploaded)continue;
+    const o=document.createElement('option');o.value=item.source_row;
+    const bits=[`Row ${item.source_row}`,item.product_name];if(item.model)bits.push(item.model);if(item.selling_price)bits.push('₹'+item.selling_price);bits.push(item.state==='completed'?'Completed':item.state==='failed'?'Retry':'Pending');
+    o.textContent=bits.join(' · ');sel.appendChild(o);shown++;
+    if(!firstRow)firstRow=String(item.source_row);
+    if(query&&productText.trim().toLowerCase()===query)exactRow=String(item.source_row);
+  }
+  if(previous&&[...sel.options].some(o=>o.value===previous))sel.value=previous;
+  else if(exactRow)sel.value=exactRow;
+  else if(query&&shown===1&&firstRow)sel.value=firstRow;
+  if(shown===0){const o=document.createElement('option');o.value='';o.textContent='No matching products';sel.appendChild(o)}
+}
+function applySheetRow(d){
+  $('productName').value=d.product_name||'';$('model').value=d.model||'';$('sourceRow').value=d.source_row||'';$('sourceSheetName').value=d.sheet_name||($('sheetTabSelect')?$('sheetTabSelect').value:'');$('sheetRowJson').value=JSON.stringify(d.row||{});setSheetTag(true,'Row '+(d.source_row||''));
+  const row=d.row||{};const price=Object.entries(row).find(([k,v])=>['price','selling price','product price','rate','unit price','sale price','sales price','offer price','selling rate'].includes(String(k).trim().toLowerCase())&&String(v||'').trim());
+  $('sourceInfo').style.display='block';$('sourceInfo').className='ready-banner show';$('sourceInfo').innerHTML=`✅ Google Sheet row ${esc(d.source_row||'—')} loaded${price?` · Selling price: ${esc(price[1])}`:''}`;
+}
+async function loadSelectedSheetProduct(){
+  const sheet=$('sheetTabSelect').value;
+  let row=$('sheetProductSelect').value;
+  if(!row){
+    const query=($('sheetProductSearch').value||'').trim();
+    if(query){
+      await refreshSheetProducts(query);
+      row=$('sheetProductSelect').value;
+    }
+  }
+  if(!row){toast('No matching Sheet product is selected. Type a product name and choose a result.','bad');return}
+  try{
+    const r=await fetch('/api/sheet/row?sheet='+encodeURIComponent(sheet)+'&row='+encodeURIComponent(row)+'&t='+Date.now());const d=await r.json().catch(()=>({}));
+    if(!r.ok||!d.ok){toast(d.message||'Could not load the selected product.','bad');return}
+    applySheetRow(d);toast('Selected Google Sheet product loaded.','good');
+  }catch(e){toast('Could not load the selected product.','bad')}
+}
+
+function setSheetTag(configured,text){
+  const tag=$('sheetTag');
+  tag.textContent=text||(configured?'Connected':'Setup');
+  tag.className='manual-tag '+(configured?'connected':'setup');
+}
+function openSheetSetup(message=''){
+  $('sheetSetupError').textContent=message||'';
+  $('sheetSetupError').className='sheet-error'+(message?' show':'');
+  $('sheetGate').style.display='grid';
+  setTimeout(()=>$('sheetSetupUrl').focus(),80);
+}
+function closeSheetSetup(){
+  $('sheetGate').style.display='none';
+  $('sheetSetupError').className='sheet-error';
+}
+async function initSheetStatus(){
+  try{
+    const r=await fetch('/api/sheet/config?t='+Date.now());
+    const d=await r.json().catch(()=>({}));
+    sheetCanConfigure=d.can_configure!==false;
+    if(r.ok&&d.configured){
+      setSheetTag(true,d.mode==='direct'?'Auto':'Connected');
+      if(d.url_hint&&!$('sheetSetupUrl').value)$('sheetSetupUrl').placeholder=d.url_hint;
+    }else{
+      setSheetTag(false,sheetCanConfigure?'Setup':'Server Setup');
+    }
+  }catch{
+    setSheetTag(false,'Manual');
+  }
+}
+async function saveSheetConfig(){
+  const url=$('sheetSetupUrl').value.trim();
+  const token=$('sheetSetupToken').value.trim();
+  const err=$('sheetSetupError');
+  err.className='sheet-error';
+
+  if(!url||!token){
+    err.textContent='Enter both the Apps Script /exec URL and token.';
+    err.className='sheet-error show';
+    return;
+  }
+
+  const btn=$('saveSheetBtn');
+  btn.disabled=true;
+  btn.textContent='Checking…';
+
+  try{
+    const r=await fetch('/api/sheet/config',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({url,token})
+    });
+    const d=await r.json().catch(()=>({}));
+
+    if(!r.ok||!d.ok){
+      err.textContent=d.message||'Could not connect Google Sheet. Check the URL, token and Apps Script deployment.';
+      err.className='sheet-error show';
+      return;
+    }
+
+    setSheetTag(true,'Connected');
+    $('sheetSetupToken').value='';
+    closeSheetSetup();
+    toast('Google Sheet connected. Loading the next product…','good');
+    await loadSheet(true);
+  }catch{
+    err.textContent='Could not contact the Apps Script Web App. Check internet access and the deployment URL.';
+    err.className='sheet-error show';
+  }finally{
+    btn.disabled=false;
+    btn.textContent='Save & Connect';
+  }
+}
+async function loadSheet(skipConfigCheck=false){
+  try{
+    const selectedSheet=$('sheetTabSelect')?$('sheetTabSelect').value:'';const r=await fetch('/api/sheet/next?sheet='+encodeURIComponent(selectedSheet)+'&t='+Date.now());
+    const d=await r.json().catch(()=>({}));
+
+    if(r.status===428||d.code==='GOOGLE_SHEET_NOT_CONFIGURED'){
+      sheetCanConfigure=d.can_configure!==false;
+      setSheetTag(false,sheetCanConfigure?'Setup':'Server Setup');
+      if(sheetCanConfigure){
+        openSheetSetup();
+      }else{
+        toast('Google Sheet must be configured from the server PC. Manual product entry still works.','bad');
+      }
+      return false;
+    }
+
+    if(!r.ok||!d.ok){
+      // A configured Sheet can still fail because the token, deployment,
+      // or source-sheet name changed. Keep manual entry usable and offer repair
+      // only to the server-PC administrator.
+      if(sheetCanConfigure){
+        openSheetSetup(d.message||'Google Sheet could not be loaded. You can repair the connection or use manual entry.');
+      }else{
+        toast(d.message||'Google Sheet needs attention on the server PC. Manual entry still works.','bad');
+      }
+      return false;
+    }
+
+    if(d.empty){
+      toast(d.message||'No unprocessed rows found.');
+      setSheetTag(true,d.mode==='direct'?'Auto':'Connected');
+      return false;
+    }
+
+    applySheetRow(d);
+    if(sheetBrowserReady)await refreshSheetProducts();
+    toast('Product loaded from Google Sheet.','good');
+    return true;
+  }catch{
+    if(sheetCanConfigure){
+      openSheetSetup('Google Sheet could not be reached. You can repair the connection or continue with manual product entry.');
+    }else{
+      toast('Google Sheet could not be reached. Ask the server PC administrator to check it; manual entry still works.','bad');
+    }
+    return false;
+  }
+}
+async function prepareProduct(){
+  const name=$('productName').value.trim();if(!name){toast('Type the Product Name first.','bad');$('productName').focus();return}
+  const fd=new FormData();fd.append('product_name',name);fd.append('model',$('model').value.trim());fd.append('source_row',$('sourceRow').value);fd.append('sheet_name',$('sourceSheetName').value);fd.append('sheet_row_json',$('sheetRowJson').value||'{}');const f=$('productImage').files[0];if(f)fd.append('product_image',f);
+  $('prepareBtn').disabled=true;$('prepareBtn').textContent='⏳ Researching…';$('readyBanner').className='ready-banner';latest=null;priceConfirmed=false;updateFlow();updateSmartAction();
+  try{const r=await fetch('/api/prepare-product',{method:'POST',body:fd});const d=await r.json().catch(()=>({}));if(!r.ok){toast(d.message||'Could not start research.','bad');$('prepareBtn').disabled=false;$('prepareBtn').textContent='🔎 Public Research & Prepare';updateSmartAction();return false}toast('Research started. The system will alert you when review is ready.');return true}catch{toast('Could not start research.','bad');$('prepareBtn').disabled=false}
+}
+function setBusy(b){workflowBusy=!!b;$('prepareBtn').disabled=b;$('prepareBtn').textContent=b?'⏳ Working…':'🔎 Public Research & Prepare';$('approveBtn').disabled=b;updateSmartAction()}
+function imageStatusClass(sim){if(sim>=.94)return 'bad';if(sim>=.86)return 'warn';return ''}
+function renderImageStudioState(state){
+  imageStudioState=state||{};
+  const urls=state.image_web_urls||[];
+  const locks=state.locks||[false,false,false,false,false];
+  const attempts=state.attempts||[0,0,0,0,0];
+  const version=state.images_updated_at||Date.now();
+  $('images').innerHTML=urls.length?urls.map((x,i)=>`<div class="image-card ${i===0?'primary-image':''}"><div class="image-card-head"><strong>Image ${i+1}</strong><span>${i===0?'<span class="primary-badge">PRIMARY</span>':(attempts[i]?`v${attempts[i]+1}`:'Original')}</span></div><img loading="eager" decoding="async" src="${esc(x)}?v=${encodeURIComponent(version)}" alt="Product image ${i+1}"><div class="image-card-actions"><button class="mini-btn ${locks[i]?'locked':''}" onclick="toggleImageLock(${i+1})">${locks[i]?'🔒 Locked':'🔓 Lock'}</button><button class="mini-btn regen" ${locks[i]?'disabled':''} onclick="regenerateImage(${i+1})">↻ Regenerate</button></div><div class="image-order-actions"><button class="mini-btn" ${i===0?'disabled':''} onclick="moveImage(${i+1},-1)">←</button><button class="mini-btn" onclick="setPrimaryImage(${i+1})">★ Primary</button><button class="mini-btn" ${i===urls.length-1?'disabled':''} onclick="moveImage(${i+1},1)">→</button></div></div>`).join(''):'<div class="template-placeholder">No usable images yet.</div>';
+  const refs=state.references||[];
+  $('referenceSummary').textContent=`References: ${refs.length}`;
+  $('referenceGrid').innerHTML=refs.length?refs.map(r=>`<div class="reference-item"><img src="${esc(r.web_url)}" alt="Reference"><div>${esc(r.source_type||'Reference')}</div></div>`).join(''):'<div class="template-placeholder">No reference images recorded.</div>';
+  const sim=state.similarity||{};
+  const max=Number(sim.max_similarity||0);
+  $('similaritySummary').className='similarity-pill '+imageStatusClass(max);
+  $('similaritySummary').textContent=sim.pairs?.length?`Highest similarity: ${Math.round(max*100)}%`:'Similarity: —';
+}
+async function loadImageStudio(){if(!latest?.record_product_name)return;try{const r=await fetch('/api/image-studio?product='+encodeURIComponent(latest.record_product_name));const d=await r.json();if(r.ok&&d.state)renderImageStudioState(d.state)}catch{}}
+async function toggleImageLock(slot){if(!latest)return;const current=!!(imageStudioState?.locks||[])[slot-1];try{const r=await fetch('/api/image-lock',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name,slot,locked:!current})});const d=await r.json();if(r.ok)renderImageStudioState(d.state);else toast(d.message||'Could not change lock.','bad')}catch{toast('Could not change image lock.','bad')}}
+async function regenerateImage(slot){if(!latest)return;toast(`Regenerating image ${slot}…`);try{const r=await fetch('/api/image-regenerate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name,slot})});const d=await r.json();if(r.ok){renderImageStudioState(d.state);toast(`Image ${slot} regenerated. Rebuild the PDF before seller posting.`,'good');latest.status='REVIEW_READY';$('sellerBtn').disabled=true}else toast(d.message||'Could not regenerate image.','bad')}catch{toast('Could not regenerate image.','bad')}}
+async function regenerateUnlocked(){if(!latest)return;if(!confirm('Regenerate every image that is not locked?'))return;try{const r=await fetch('/api/image-regenerate-unlocked',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name})});const d=await r.json();if(r.ok){renderImageStudioState(d.state);toast('Unlocked images regenerated. Rebuild the PDF before seller posting.','good');latest.status='REVIEW_READY';$('sellerBtn').disabled=true}else toast(d.message||'Could not regenerate images.','bad')}catch{toast('Could not regenerate images.','bad')}}
+async function autoDiversify(){if(!latest)return;toast('Checking image similarity and diversifying duplicates…');try{const r=await fetch('/api/image-auto-diversify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name})});const d=await r.json();if(r.ok){renderImageStudioState(d.state);const n=(d.state.changed_slots||[]).length;toast(n?`Auto-diversified ${n} image slot(s). Rebuild PDF.`:'Images are already sufficiently different.','good');if(n){latest.status='REVIEW_READY';$('sellerBtn').disabled=true}}else toast(d.message||'Could not diversify images.','bad')}catch{toast('Could not diversify images.','bad')}}
+async function setPrimaryImage(slot){if(!latest)return;try{const r=await fetch('/api/image-primary',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name,slot})});const d=await r.json();if(r.ok){renderImageStudioState(d.state);latest.status='REVIEW_READY';$('sellerBtn').disabled=true;toast('Primary image changed. Rebuild the PDF before seller posting.','good')}else toast(d.message||'Could not set primary image.','bad')}catch{toast('Could not set primary image.','bad')}}
+async function moveImage(slot,delta){if(!latest)return;const order=[1,2,3,4,5];const i=slot-1,j=i+delta;if(j<0||j>4)return;[order[i],order[j]]=[order[j],order[i]];try{const r=await fetch('/api/image-reorder',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name,order})});const d=await r.json();if(r.ok){renderImageStudioState(d.state);latest.status='REVIEW_READY';$('sellerBtn').disabled=true;toast('Image order updated. Rebuild the PDF.','good')}else toast(d.message||'Could not reorder images.','bad')}catch{toast('Could not reorder images.','bad')}}
+function toggleReferences(){$('referencePanel').classList.toggle('show')}
+function openHistory(){$('historyGate').classList.add('show');loadHistory()}
+function closeHistory(){$('historyGate').classList.remove('show')}
+async function loadHistory(){try{const r=await fetch('/api/history?limit=120&t='+Date.now());const d=await r.json();const items=d.items||[];$('historyBody').innerHTML=items.length?items.map(x=>{const failed=x.last_failure&&x.last_failure.message;const cls=failed?'fail':(x.seller_status==='published'||x.seller_status==='manual_completed'?'done':'');return `<div class="history-row"><div><strong>${esc(x.listing_name||x.record_product_name)}</strong><div style="color:#7a879d;margin-top:3px">${esc(x.model||'No model')} · ${esc(x.updated_at||'')}</div></div><span>${esc(x.sheet_name||'Manual')} ${x.source_row?'· Row '+esc(x.source_row):''}</span><span class="history-status ${cls}">${esc(failed?'FAILED':(x.seller_status||x.status||'Prepared'))}</span><span>${esc(x.decision||'')}</span><button class="tool-btn" onclick='openHistoryProduct(${JSON.stringify(JSON.stringify(x.record_product_name))})'>Open</button></div>`}).join(''):'<div class="template-placeholder">No product history yet.</div>'}catch{$('historyBody').textContent='Could not load recent products.'}}
+async function openHistoryProduct(encoded){const product=JSON.parse(encoded);try{const r=await fetch('/api/history/open',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product})});const d=await r.json();if(r.ok&&d.result){renderRecord(d.result);closeHistory();showPage('review');toast('Previous product opened.','good')}else toast(d.message||'Could not open product.','bad')}catch{toast('Could not open product.','bad')}}
+async function retryFailedStep(){if(!latest)return;try{const r=await fetch('/api/retry-failed-step',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name})});const d=await r.json();if(r.ok){$('retryTools').classList.remove('show');toast(d.message||'Retry started.','good')}else toast(d.message||'Could not retry failed step.','bad')}catch{toast('Could not retry failed step.','bad')}}
+async function restoreLatestBackup(){if(!latest||!confirm('Restore the latest product checkpoint?'))return;try{const r=await fetch('/api/restore-backup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name})});const d=await r.json();if(r.ok&&d.result){renderRecord(d.result);toast('Latest checkpoint restored.','good')}else toast(d.message||'No checkpoint could be restored.','bad')}catch{toast('Could not restore checkpoint.','bad')}}
+async function showDiagnostics(){if(!latest)return;try{const r=await fetch('/api/selector-diagnostics?product='+encodeURIComponent(latest.record_product_name));const d=await r.json();if(!d.available){toast('No selector diagnostic has been saved yet.','bad');return}const lines=(d.controls||[]).slice(0,15).join('\n');alert('IndiaMART selector diagnostics\n\n'+lines+(d.screenshot_url?'\n\nERROR screenshot is saved in the product output folder.':''))}catch{toast('Could not read diagnostics.','bad')}}
+async function loadCompletion(){if(!latest)return;try{const r=await fetch('/api/completion?product='+encodeURIComponent(latest.record_product_name)+'&t='+Date.now());const d=await r.json();if(!r.ok||!d.summary)return;const s=d.summary;const key=JSON.stringify(s);if(key===lastCompletionKey)return;lastCompletionKey=key;$('completionCard').classList.add('show');$('completionGrid').innerHTML=[['Product',s.product],['Model',s.model||'—'],['Images',s.images+'/5'],['PDF',s.pdf_ready?'Ready':'Not ready'],['Decision',s.decision||'—'],['Seller status',s.seller_status||'—'],['Sheet',s.sheet_name?(s.sheet_name+(s.source_row?' · Row '+s.source_row:'')):'Manual'],['Completed',s.completed_at||'—']].map(([a,b])=>`<div class="completion-item"><small>${esc(a)}</small><strong>${esc(b)}</strong></div>`).join('');$('manualCompleteBtn').style.display=s.seller_status==='review_required'?'inline-block':'none'}catch{}}
+async function markManualCompleted(){if(!latest||!confirm('Confirm that you completed the IndiaMART review/submission in the seller browser?'))return;try{const r=await fetch('/api/mark-manual-completed',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({product:latest.record_product_name})});const d=await r.json();if(r.ok){renderRecord(d.result);loadCompletion();toast('Marked completed. Sheet progress was updated where available.','good');if(sheetBrowserReady)refreshSheetProducts()}else toast(d.message||'Could not mark completed.','bad')}catch{toast('Could not mark completed.','bad')}}
+function renderRecord(r){
+  if(!r)return;
+  latest=r;
+  const a=r.approved||{},res=r.research||{},cd=a.company_details||res.company_details||{},assets=r.assets||{},ts=r.timestamps||{};
+
+  // Polling runs frequently. Only replace editable text when the record itself
+  // changed, and never while the operator is editing. This prevents cursor jumps.
+  const textKey=[r.record_product_name||'',r.status||'',ts.prepared_at||'',ts.approved_at||'',ts.seller_at||''].join('|');
+  if(!editMode && textKey!==lastTextKey){
+    $('editName').value=a.listing_name||r.record_product_name||'';
+    $('editModel').value=a.model||'';
+    $('editCompany').value=cd.company_name||'';
+    $('editLocation').value=cd.location||'';
+    $('editDescription').value=a.description||'';
+    $('editFeatures').value=(a.key_features||[]).join('\n');
+    $('editApplications').value=(a.applications||[]).join('\n');
+    $('editSpecs').value=specsText(a.specifications||[]);
+    lastTextKey=textKey;
+  }
+
+  // IMPORTANT: do not rebuild <img> nodes on every /api/status poll.
+  // Recreating them was the reason the five images visibly blinked.
+  const imageUrls=assets.image_web_urls||[];
+  const imagesKey=JSON.stringify(imageUrls)+'|'+(ts.prepared_at||'')+'|'+(ts.images_updated_at||'');
+  if(imagesKey!==lastImagesKey){
+    if(imageUrls.length){
+      loadImageStudio();
+    }else{
+      $('images').innerHTML='<div class="template-placeholder">No usable images yet. Add one genuine product image and prepare again.</div>';
+    }
+    lastImagesKey=imagesKey;
+  }
+
+  // Keep the PDF iframe alive between status polls. Reload it only when a new
+  // approved PDF is actually built. This removes PDF viewer flashing/blinking.
+  const pdf=assets.pdf_web_url||'';
+  const pdfVersion=ts.approved_at||'';
+  const pdfKey=pdf+'|'+pdfVersion;
+  if(pdfKey!==lastPdfKey){
+    if(pdf){
+      const versionQuery=pdfVersion?'?v='+encodeURIComponent(pdfVersion):'';
+      $('templatePreview').innerHTML=`<iframe title="Approved product PDF" src="${esc(pdf)}${versionQuery}#toolbar=1&navpanes=0"></iframe>`;
+    }else{
+      $('templatePreview').innerHTML='<div class="template-placeholder"><div class="pdficon">PDF</div><strong>PDF not built yet</strong><div style="margin-top:6px">Click “Approve & Continue”. The finished template will appear here.</div></div>';
+    }
+    lastPdfKey=pdfKey;
+  }
+
+  const ready=r.status==='READY_FOR_INDIAMART';
+  const sellerReview=r.status==='SELLER_REVIEW_REQUIRED';
+  const sellerDone=r.status==='SELLER_COMPLETED';
+  $('sellerBtn').disabled=!ready;
+  $('recordStatus').textContent=sellerDone?'SELLER COMPLETED':sellerReview?'SELLER REVIEW':ready?'READY FOR INDIAMART':'REVIEW READY';
+  $('readyBanner').className='ready-banner show';
+  updateFlow();renderAttention();updateSmartAction();refreshDashboardStats();
+  if(sellerReview||sellerDone)loadCompletion();
+}
+function setEditMode(on){editMode=on;['editCompany','editLocation','editName','editModel','editDescription','editFeatures','editApplications','editSpecs'].forEach(id=>{$(id).disabled=!on;const card=$(id).closest('.review-card');if(card)card.classList.toggle('readonly',!on)});$('editBtn').textContent=on?'✓ Finish Editing':'✎ Edit Details';if(on)$('editName').focus()}
+function toggleEditMode(){setEditMode(!editMode)}
+async function approveBuild(){
+  if(!latest){toast('Prepare a product first.','bad');return}setEditMode(false);const review={listing_name:$('editName').value,model:$('editModel').value,company_name:$('editCompany').value,company_location:$('editLocation').value,description:$('editDescription').value,key_features:splitLines($('editFeatures').value),applications:splitLines($('editApplications').value),specifications:$('editSpecs').value};$('approveBtn').disabled=true;$('approveBtn').textContent='⏳ Building PDF…';
+  try{const r=await fetch('/api/save-review-build-pdf',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({record_product_name:latest.record_product_name,review})});const d=await r.json().catch(()=>({}));if(!r.ok||!d.result){toast(d.message||'PDF build failed.','bad');return}renderRecord(d.result);renderAttention();if(uiMode==='simple'){toast('Approved. Preparing the IndiaMART seller form…','good');setTimeout(()=>continueIndiaMart(true),180)}else{toast('Approved PDF is ready. Continue to IndiaMART when ready.','good')}}catch{toast('PDF build failed.','bad')}finally{$('approveBtn').disabled=false;$('approveBtn').textContent=uiMode==='simple'?'✓ APPROVE & CONTINUE':'✓ Approve & Build PDF'}
+}
+async function continueIndiaMart(skipConfirm=false){
+  if(!latest||latest.status!=='READY_FOR_INDIAMART'){toast('Build the PDF first.','bad');return}if(!skipConfirm&&!confirm('Open IndiaMART Seller and fill this approved product now?'))return;['flow1','flow2','flow3','flow4'].forEach(id=>$(id).className='flow-step done');$('flow5').className='flow-step active';toast('Opening IndiaMART Seller…');
+  try{const r=await fetch('/api/continue-indiamart',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({record_product_name:latest.record_product_name})});const d=await r.json().catch(()=>({}));if(!r.ok)toast(d.message||'Could not start seller phase.','bad')}catch{toast('Could not start seller phase.','bad')}
+}
+function renderStatus(s){
+  $('bar').style.width=(s.progress||0)+'%';$('percent').textContent=(s.progress||0)+'%';$('stageTag').textContent=s.stage||'READY';$('stageText').textContent=s.error||s.stage||'Ready';setBusy(!!s.running&&s.phase!=='INDIAMART_SELLER');if(s.login_connected)setConnection(true,'IndiaMART Connected');if(s.result)renderRecord(s.result);
+  if((s.logs||[]).length!==lastLogCount){lastLogCount=(s.logs||[]).length;$('logs').innerHTML=(s.logs||[]).map(x=>`<div class="log ${x.stage==='ERROR'?'error':''}"><b>[${esc(x.time)} ${esc(x.stage)}]</b> ${esc(x.message)}</div>`).join('');$('logs').scrollTop=$('logs').scrollHeight}
+  const failure=s.result?.last_failure||null;
+  if(s.error||failure){const key=(s.error||failure?.message||'')+'|'+(failure?.phase||s.phase||'');if(key!==lastFailureKey){lastFailureKey=key;$('retryMessage').textContent='The system could not finish this step. Use Fix & Retry Automatically. Admin Mode has the technical details.'}$('retryTools').classList.add('show')}else if(!s.running){$('retryTools').classList.remove('show')}updateSmartAction();updateFlow();
+  if(s.result&&(s.result.status==='SELLER_REVIEW_REQUIRED'||s.result.status==='SELLER_COMPLETED'))loadCompletion();
+}
+async function poll(){try{const r=await fetch('/api/status?t='+Date.now());if(r.ok)renderStatus(await r.json())}catch{}setTimeout(poll,900)}
+initMode();setGreeting();setEditMode(false);initSheetStatus();refreshDashboardStats();updateSmartAction();poll();autoConnect();
+</script>
+</body>
+</html>

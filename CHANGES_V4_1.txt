@@ -1,0 +1,14 @@
+NUNES INDIAMART AUTOMATION V4.1 - MASTER IMAGE MATCHING + MULTI-PAGE GALLERY
+
+- Uploaded product image is now the MASTER reference and stays as Image 1 / primary image.
+- IndiaMART research now collects gallery images from multiple matching product-detail pages instead of only the single best page.
+- Public image candidates keep source-page title, page relevance, image rank and source URL metadata.
+- IndiaMART candidate images download concurrently for faster preparation.
+- Candidate images are filtered/ranked against the uploaded master plus IndiaMART page relevance.
+- Unrelated/low-confidence public images are rejected instead of being forced into the 5-image gallery.
+- If too few safe IndiaMART matches exist, the genuine master/local reference is reused for safe variants.
+- Uploaded master image is locked by default against automatic regeneration.
+- IndiaMART file-input verification now checks exact image order so product_1 remains first/primary.
+- Default public page scan reduced to 4 results for speed; configurable with PUBLIC_SCAN_RESULTS.
+- Default per-result settle wait reduced to 900 ms; configurable with PUBLIC_RESULT_WAIT_MS.
+- Existing local Qwen/Ollama content generation remains unchanged. No new Gemini key is required for V4.1.

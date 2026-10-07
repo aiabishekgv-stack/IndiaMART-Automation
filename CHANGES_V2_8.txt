@@ -1,0 +1,15 @@
+NUNES IndiaMART Automation V2.8 - Background Research
+
+Change requested:
+- DuckDuckGo/public IndiaMART research must NOT open a visible browser window.
+
+Implemented:
+- Public research now runs headless/in the background by default.
+- DuckDuckGo fallback searches remain functional but invisible.
+- Public IndiaMART product pages used for research are also scanned invisibly.
+- Seller-account browser flow remains separate and may still be visible when needed for IndiaMART seller actions.
+- PUBLIC_HEADLESS=true is now the default in .env.example.
+- Existing V2.7 Image Studio features are preserved.
+
+Debug note:
+- To intentionally show the public research browser for troubleshooting only, set PUBLIC_HEADLESS=false.

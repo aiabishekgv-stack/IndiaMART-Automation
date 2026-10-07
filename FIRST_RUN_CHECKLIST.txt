@@ -1,0 +1,15 @@
+NUNES V3.0 FIRST RUN
+====================
+
+1. In the supplied Google Sheet, set Share -> Anyone with the link -> Viewer.
+2. Extract this ZIP to a NEW folder.
+3. Run SETUP.bat once.
+4. Run TEST.bat.
+5. Run START.bat.
+6. IndiaMART popup appears first. Auto Connect or complete the official IndiaMART login if required.
+7. Press Next -> Product Page. The next Google Sheet product loads automatically.
+8. You can also press Load Next from Google Sheet at any time.
+9. Prepare -> Next Template -> review -> Approve & Build PDF.
+10. Continue to IndiaMART Seller. Keep PUBLISH_MODE=review for first real tests.
+
+No Apps Script token is required for loading products in V3.0 direct mode.

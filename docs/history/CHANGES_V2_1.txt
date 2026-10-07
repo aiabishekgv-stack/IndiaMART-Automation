@@ -1,0 +1,40 @@
+NUNES IndiaMART Automation V2.1 - Friendly Workflow
+====================================================
+
+NEW USER FLOW
+-------------
+1. IndiaMART connection popup appears first.
+2. Auto Connect tries:
+   a) saved automation login state
+   b) the most recently used Windows Chrome profile (best effort)
+3. If needed, Login Once opens normal IndiaMART login/OTP and saves the session.
+4. Next -> Product Page opens the simplified Product Input screen.
+5. Public Research & Prepare runs the existing evidence/Qwen/image workflow.
+6. Next -> Template appears at the top when research is ready.
+7. Template Review is a separate clean page.
+8. Approve & Build PDF embeds the finished PDF directly in the template page.
+9. Continue to IndiaMART Seller remains review-first by default.
+
+UI CHANGES
+----------
+- Removed System Check button from the main UI.
+- Removed Reset View button from the main UI.
+- Added a 3-step visual progress bar: Product Details -> Template Review -> Seller.
+- Reduced duplicate seller/login buttons.
+- Added clear beginner-friendly instructions.
+- Added inline PDF template preview.
+- Added friendly success/error toasts.
+- Added a persistent IndiaMART Connected status pill.
+
+LOGIN BEHAVIOUR
+---------------
+- Saved session is always tried first.
+- Chrome profile bridge auto-detects Chrome's last-used profile when CHROME_PROFILE_DIRECTORY=auto.
+- The application never forcibly closes normal Chrome.
+- If Chrome has locked its profile, close Chrome once and press Auto Connect; future starts use the saved automation state and no repeat login should be needed until IndiaMART expires the session.
+
+SAFETY
+------
+- PUBLISH_MODE stays review by default.
+- Purchase/internal prices are still excluded from IndiaMART selling-price auto-fill.
+- No .env secrets or login storage-state file are included in this release ZIP.

@@ -1,0 +1,33 @@
+NUNES IndiaMART Product Automation V2.4 Production
+==================================================
+
+1. PRIVATE PER-PC CONFIG
+- Google Sheet URL/token are now written to:
+  %LOCALAPPDATA%\NUNES_INDIAMART_AUTOMATION\config\.env
+- The shared project/NAS folder no longer receives those secrets.
+- Legacy project .env is read only for backwards compatibility; V2.4 never writes secrets there.
+
+2. LAN ADMIN PROTECTION
+- Google Sheet configuration POST is allowed only from localhost/server PC.
+- Remote LAN users can use the app and manual product entry but cannot change Sheet credentials.
+- The reset API is also localhost-only.
+
+3. SMARTER OLD-SETTINGS IMPORT
+- Searches old NUNES .env files.
+- Sorts by newest modified time.
+- Lets the operator select which previous configuration to import.
+- Imports only APPS_SCRIPT_URL and APPS_SCRIPT_TOKEN into private LocalAppData config.
+
+4. RELEASE CLEANUP
+- Version history moved to docs\history.
+- V2.4 validation and security notes are consolidated.
+- Safe release builder renamed for V2.4.
+
+5. EXISTING V2.3 FEATURES RETAINED
+- Friendly Login → Product → Template → Seller UI.
+- Existing Chrome IndiaMART account bridge.
+- No deliberate separate IndiaMART sign-in page.
+- Stable non-blinking product images/PDF preview.
+- Google Sheet optional/manual mode.
+- Qwen/Ollama, product-record, model sync, selling-price safety, PDF approval flow.
+- Review-first IndiaMART posting.

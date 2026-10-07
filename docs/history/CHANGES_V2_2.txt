@@ -1,0 +1,12 @@
+NUNES IndiaMART Automation V2.2 - Stability Release
+
+1. Fixed five product images blinking on every status poll.
+2. Fixed embedded PDF viewer blinking/reloading on every status poll.
+3. Prevented polling from overwriting fields while the operator edits the template.
+4. Removed the visible Login Once / OTP workflow.
+5. Added Connect Existing Chrome Account flow using a local Chrome profile snapshot.
+6. Normal Chrome is not intentionally closed or modified.
+7. Disabled /api/indiamart-login separate sign-in route in V2.2.
+8. Seller workflow verifies authentication headlessly before opening a visible seller window.
+9. Visible seller workflow uses the verified existing-account session and targets Manage Products.
+10. PUBLISH_MODE remains review by default.

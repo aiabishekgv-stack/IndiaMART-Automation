@@ -1,0 +1,13 @@
+NUNES IndiaMART Automation V2.7 - Image Studio
+
+New user controls:
+- Lock any good image so it is never regenerated accidentally.
+- Regenerate only one selected image.
+- Regenerate all unlocked images in one click.
+- Auto Diversify detects highly similar output pairs and regenerates unlocked duplicates.
+- Show all source/reference images used by the system.
+- Show highest output-image similarity percentage.
+- Any image change invalidates the old PDF and requires Approve & Build PDF again, keeping seller posting consistent.
+
+V2.6 multi-reference scanning/deduplication/different compositions remains included.
+IndiaMART login-first popup and Google Sheet setup remain included.

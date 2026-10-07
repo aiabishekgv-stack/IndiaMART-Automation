@@ -1,0 +1,28 @@
+V2.4 SECURITY NOTES
+===================
+
+PRIVATE CONFIG LOCATION
+%LOCALAPPDATA%\NUNES_INDIAMART_AUTOMATION\config\.env
+
+PRIVATE RUNTIME / LOGIN STATE
+%LOCALAPPDATA%\NUNES_INDIAMART_AUTOMATION\runtime\
+
+SHARED PROJECT / NAS SHOULD CONTAIN
+- source code
+- templates
+- non-secret .env.example
+- documentation
+
+SHARED PROJECT / NAS SHOULD NOT CONTAIN
+- real .env credentials
+- IndiaMART storage_state JSON
+- Chrome profile copies
+- generated customer/product output if you do not intend to share it
+
+LAN MODE
+- Sheet credential changes are localhost-only.
+- Configure Google Sheet by opening http://127.0.0.1:5077 on the server PC.
+- Office client PCs can still load Sheet rows after the server has been configured.
+
+OPTIONAL HARDENING
+Run HARDEN_LOCAL_CONFIG.ps1 on the server PC to restrict the config directory ACL to the current Windows user. Use this only if your Windows/IT policy permits it.

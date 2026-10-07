@@ -1,0 +1,14 @@
+NUNES INDIA MART AUTOMATION V4.0 - GUIDED UI
+
+- Simple Mode is the default employee interface.
+- Admin Mode keeps diagnostics, retry, restore checkpoint, image tuning and Sheet settings available without exposing them during normal work.
+- Added dashboard: Products Waiting, Ready for Review, Problems, Completed Today.
+- Added one Smart Action button that changes with the current workflow stage.
+- Added Start Next Product automation: load the next Sheet row and start preparation.
+- Added recent-product Resume / Continue card.
+- Added five-step visual workflow: Product -> Research -> Review -> PDF -> IndiaMART.
+- Added Attention Required review summary for product name, model, description, specifications, images, PDF, duplicate-check stage and selling price.
+- Added simple Fix & Retry Automatically error action; technical diagnostics remain under Admin Mode.
+- Technical image controls are hidden in Simple Mode but preserved in Admin Mode.
+- Existing research, Google Sheet, image, PDF, checkpoint, duplicate guard and IndiaMART backend logic is preserved.
+- History now exposes completion timestamps so the dashboard can count Completed Today correctly.
