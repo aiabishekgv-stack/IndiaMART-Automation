@@ -13,7 +13,10 @@ EXAMPLE_ENV = ROOT / ".env.example"
 
 
 def ensure_local_config():
-    """Create the per-PC config file used by V2.4."""
+    """Use Vercel environment variables or Windows local configuration."""
+    if os.getenv("VERCEL"):
+        return None
+
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)
     if not LOCAL_ENV.exists():
         if EXAMPLE_ENV.exists():
@@ -38,8 +41,10 @@ def load_configuration():
     if PROJECT_ENV.exists():
         load_dotenv(PROJECT_ENV, override=False)
 
-    ensure_local_config()
-    local_values = dotenv_values(LOCAL_ENV)
+    config_path = ensure_local_config()
+    if config_path is None:
+        return None
+    local_values = dotenv_values(config_path)
     for key, value in local_values.items():
         if key and value is not None and key not in explicit_keys:
             os.environ[key] = str(value)
@@ -48,6 +53,8 @@ def load_configuration():
 
 
 def save_local_setting(key, value):
+    if os.getenv("VERCEL"):
+        raise RuntimeError("Use Vercel environment variables for cloud settings.")
     ensure_local_config()
     set_key(str(LOCAL_ENV), str(key), str(value), quote_mode="never")
     os.environ[str(key)] = str(value)
