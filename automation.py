@@ -27,8 +27,9 @@ ROOT = Path(__file__).resolve().parent
 OUTPUTS = ROOT / "outputs"
 INPUT_IMAGES = ROOT / "input_images"
 LOGS = ROOT / "logs"
-for folder in (OUTPUTS, INPUT_IMAGES, LOGS):
-    folder.mkdir(parents=True, exist_ok=True)
+if not os.getenv("VERCEL"):
+    for folder in (OUTPUTS, INPUT_IMAGES, LOGS):
+        folder.mkdir(parents=True, exist_ok=True)
 
 
 def safe_name(text):
